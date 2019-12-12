@@ -1,11 +1,11 @@
 import React from 'react';
-import 'TestComponent.scss'
+import styles from 'TestComponent.module.scss'
 
 interface IProps {}
 
 const TestComponent: React.FC<IProps> = () => {
     return (
-        <div className="test-component">Test component</div>
+        <div className={styles.testComponent}>Test component</div>
     )
 }
 
