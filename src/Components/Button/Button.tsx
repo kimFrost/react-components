@@ -1,6 +1,7 @@
 
 import React from 'react';
-import styles from './Button.scss'
+import './Button.scss'
+//import styles from './Button.scss'
 
 interface IProps {
     onClick?: () => void
@@ -10,7 +11,7 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({onClick, children, disabled}) => {
     return (
-        <button className={styles.Button} onClick={onClick} disabled={disabled}>{children}</button>
+        <button className="btn" onClick={onClick} disabled={disabled}>{children}</button>
     )
 }
 
