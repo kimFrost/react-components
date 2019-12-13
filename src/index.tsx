@@ -1,8 +1,9 @@
 
 import TestComponent from './Components/TestComponent';
+import Button from './Components/Button/Button';
 
-export { TestComponent }
+export { TestComponent, Button }
 
 export function testMethod(param: string) {
-    return "Hello " + param;
-  }
+  return "Hello " + param;
+}
