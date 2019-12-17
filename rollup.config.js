@@ -1,7 +1,8 @@
 import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
 import { terser } from "rollup-plugin-terser";
-import postcss from 'rollup-plugin-postcss';
+//import postcss from 'rollup-plugin-postcss';
+import postcss from 'rollup-plugin-postcss-modules';
 
 export default {
     input: 'src/index.ts', // our source file
@@ -39,8 +40,10 @@ export default {
         terser(), // minifies generated bundles
         postcss({
             extract: false,
+            writeDefinitions: true,
             modules: true,
             use: ['sass'],
+            //extensions: ['.module.scss']
         }),
     ]
 };

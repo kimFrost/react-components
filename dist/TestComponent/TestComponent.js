@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from "./TestComponent.scss";
+import styles from "./TestComponent.module.scss";
 var TestComponent = function () {
     console.log('styles', styles);
-    return (React.createElement("div", { className: styles.testComponent }, "Test component from new react component library"));
+    return (React.createElement("div", { className: "testComponent " + styles['testComponent--hot'] },
+        React.createElement("div", { className: styles.body }, "Test component from new react component library")));
 };
 TestComponent.defaultProps = {};
 export default TestComponent;

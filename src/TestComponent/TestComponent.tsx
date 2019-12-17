@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from "./TestComponent.scss"
+import styles from "./TestComponent.module.scss"
 
 interface IProps {
     theme?: string
@@ -9,7 +9,9 @@ interface IProps {
 const TestComponent: React.FC<IProps> = () => {
     console.log('styles', styles)
     return (
-        <div className={styles.testComponent}>Test component from new react component library</div>
+        <div className={"testComponent " + styles['testComponent--hot']}>
+            <div className={styles.body}>Test component from new react component library</div>
+        </div>
     )
 }
 

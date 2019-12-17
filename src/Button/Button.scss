@@ -1,0 +1,73 @@
+
+$btn-height: 31px !default;
+$btn-font-family: sans-serif !default;
+$btn-font-weight: 400 !default;
+$btn-text-color: white !default;
+$btn-background-color: green !default;
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    position: relative; 
+    overflow: hidden;
+    min-width: 4em;
+    height: $btn-height;
+    padding: 0 2.5em;
+    border-radius: 2em;
+    color: $btn-text-color;
+    background: $btn-background-color;
+    font-family: $btn-font-family;
+    font-weight: $btn-font-weight;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    
+    &:focus {
+        outline: none !important;  
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.btn:hover {
+    background: mix(black, $btn-background-color, 30%);
+}
+
+.btn:active {
+    background: mix(black, $btn-background-color, 10%);
+}
+
+.btn:disabled {
+    background: mix(white, $btn-background-color, 50%);
+    cursor: auto;
+}
+
+.btn--outline {
+    background-color: $btn-text-color;
+    border: 1px solid $btn-background-color;
+    color: $btn-background-color;   
+    &:hover {
+        background: transparent;
+        border-color: mix(black, $btn-background-color, 30%);
+        color: mix(black, $btn-background-color, 30%);
+    }
+    &:active {
+        background: transparent;
+        border-color: mix(black, $btn-background-color, 10%);
+        color: mix(black, $btn-background-color, 10%);
+    }
+    &:disabled {
+        background-color: transparent;
+        color: mix(white, $btn-background-color, 50%);
+        border-color: mix(white, $btn-background-color, 50%);
+    } 
+}
+

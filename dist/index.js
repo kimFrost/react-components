@@ -1,14 +1,5 @@
 import TestComponent from './TestComponent/TestComponent';
+import Button from './Button/Button';
 export var Greeter = function (name) { return "Hello " + name; };
-export { TestComponent };
-/*
-import React from 'react';
-import { render } from 'react-dom';
-
-
-const App = () => (
-    <TestComponent />
-);
-render(<App />, document.getElementById("root"));
-*/ 
+export { TestComponent, Button };
 //# sourceMappingURL=index.js.map
