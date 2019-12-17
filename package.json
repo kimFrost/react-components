@@ -1,6 +1,6 @@
 {
-  "name": "@kimfrost/new-react-components",
-  "version": "0.0.1",
+  "name": "@kimfrost/react-components",
+  "version": "0.0.4",
   "author": {
     "name": "Kim Frost",
     "email": "kim@thatworks.dk",
@@ -17,9 +17,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development",
     "build-ts": "tsc",
-    "build-webpack": "webpack",
     "build-rollup": "rollup -c && tsc"
   },
   "devDependencies": {
@@ -28,7 +26,6 @@
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "css-loader": "^3.3.2",
-    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -41,10 +38,7 @@
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.7.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "typescript": "^3.7.3"
   },
   "peerDependencies": {
     "react": "^16.12.0",
