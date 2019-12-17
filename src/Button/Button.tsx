@@ -1,6 +1,7 @@
 
 import React from 'react';
 import styles from './Button.scss'
+import { Button as StyledButton } from './Button.styles';
 
 interface IProps {
     onClick?: () => void

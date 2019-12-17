@@ -21,6 +21,9 @@
     "build-rollup": "rollup -c && tsc"
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/css": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "@types/css-modules": "^1.0.0",
     "@types/node": "^12.12.17",
     "@types/react": "^16.9.16",
@@ -38,6 +41,9 @@
     "typescript": "^3.7.3"
   },
   "peerDependencies": {
+    "@emotion/core": "^10.0.22",
+    "@emotion/css": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
