@@ -3,6 +3,7 @@ import pkg from './package.json';
 import { terser } from "rollup-plugin-terser";
 //import postcss from 'rollup-plugin-postcss';
 import postcss from 'rollup-plugin-postcss-modules';
+//import resolve from "rollup-plugin-node-resolve";
 
 export default {
     input: 'src/index.ts', // our source file
@@ -21,10 +22,12 @@ export default {
         ...Object.keys(pkg.peerDependencies || {}),
     ],
     plugins: [
-        //resolve(),
         typescript({
             typescript: require('typescript'),
         }),
+
+        //resolve(),
+
         // commonjs({
         //     include: ["node_modules/**"],
         //     namedExports: {

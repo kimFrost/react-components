@@ -9,14 +9,19 @@ interface IProps {
     outline?: boolean
 }
 
-const Button: React.FC<IProps> = ({onClick, children, disabled, outline}) => {
+const Button: React.FC<IProps> = ({ onClick, children, disabled, outline }) => {
     return (
-        <button className={styles.btn + (outline ? ` ${styles.btnOutline}`: "")} onClick={onClick} disabled={disabled}>{children}</button>
+        <div>
+            <StyledButton outline={outline} onClick={onClick} disabled={disabled}>
+                {children}
+            </StyledButton>
+        </div>
+        // <button className={styles.btn + (outline ? ` ${styles.btnOutline}`: "")} onClick={onClick} disabled={disabled}>{children}</button>
     )
 }
 
 Button.defaultProps = {
-    onClick: () => void(0),
+    onClick: () => void (0),
     disabled: false,
     outline: false
 }
