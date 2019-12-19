@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import './Checkbox.scss';
+import styles from './Checkbox.scss';
 var Checkbox = function (_a) {
     var disabled = _a.disabled, checked = _a.checked, invalid = _a.invalid, invalidText = _a.invalidText;
     var ref = useRef(null);
@@ -13,10 +13,10 @@ var Checkbox = function (_a) {
             }
         }
     }, [invalid]);
-    return (React.createElement("div", { className: "checkbox" },
-        React.createElement("div", { className: "checkbox__ui-container" },
-            React.createElement("input", { type: "checkbox", ref: ref, className: "checkbox__input", disabled: disabled, checked: checked }),
-            React.createElement("div", { className: "checkbox__ui" })),
+    return (React.createElement("div", { className: styles.checkbox },
+        React.createElement("div", { className: styles.checkboxUiContainer },
+            React.createElement("input", { type: "checkbox", ref: ref, className: styles.checkboxInput, disabled: disabled, checked: checked }),
+            React.createElement("div", { className: styles.checkboxUi })),
         invalid && invalidText &&
             React.createElement("span", null, invalidText)));
 };

@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import './Checkbox.scss'
+import styles from './Checkbox.scss'
 
 interface IProps {
     disabled?: boolean
@@ -24,10 +24,10 @@ const Checkbox: React.FC<IProps> = ({ disabled, checked, invalid, invalidText })
     }, [invalid])
 
     return (
-        <div className="checkbox">
-            <div className="checkbox__ui-container">
-                <input type="checkbox" ref={ref} className="checkbox__input" disabled={disabled} checked={checked} />
-                <div className="checkbox__ui"></div>
+        <div className={styles.checkbox}>
+            <div className={styles.checkboxUiContainer}>
+                <input type="checkbox" ref={ref} className={styles.checkboxInput} disabled={disabled} checked={checked} />
+                <div className={styles.checkboxUi}></div>
             </div>
             {invalid && invalidText &&
                 <span>{invalidText}</span>

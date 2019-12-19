@@ -1,5 +1,4 @@
 import React from 'react';
-import './Checkbox.scss';
 interface IProps {
     disabled?: boolean;
     checked?: boolean;

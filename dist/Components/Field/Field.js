@@ -21,7 +21,7 @@ var Field = function (props) {
         return (React.createElement(React.Fragment, null,
             React.createElement("input", { className: [styles.field, (focus ? styles.fieldFocus : ''), (invalid ? styles.fieldInvalid : '')].join(' '), id: id, type: type, value: value, placeholder: placeholder, disabled: disabled }),
             invalid && errorText &&
-                React.createElement("span", { className: "field__error" }, errorText)));
+                React.createElement("span", { className: styles.fieldError }, errorText)));
     }
 };
 Field.defaultProps = {
