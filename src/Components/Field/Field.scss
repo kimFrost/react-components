@@ -1,0 +1,52 @@
+
+$field-height: 31px !default;
+$field-font-family: sans-serif !default;
+$field-font-weight: 400 !default;
+$field-text-color: black !default;
+$field-background-color: white !default;
+$field-error-color: red !default;
+$field-focus-color: green !default;
+
+.field {
+    box-sizing: border-box;    
+    background: $field-background-color;
+    border-radius: 1em;
+    min-width: 300px;
+    height: $field-height;
+    border-radius: ($field-height / 2);
+    outline: none;
+    margin: 0;
+    padding: 0.5em 1em;
+    border: 1px solid grey;
+    color: $field-text-color;
+    font-size: 1em;
+    font-weight: $field-font-weight;
+    font-family: $field-font-family;
+}
+
+.field:focus,
+.field--focus {
+    border-color: $field-focus-color;
+}
+
+.field:disabled {
+    background-color: lightgrey;
+    border-color: lightgrey;
+}
+
+.field__error {
+    display: none;
+    margin-top: 0.5em;
+    font-size: 0.95em;
+    font-family: $field-font-family;
+    color: $field-error-color;
+}
+
+.field--invalid {
+    color: $field-error-color;
+    border-color: $field-error-color;   
+    background-color: mix(white, $field-error-color, 90);
+    & + .field__error {
+        display: block;
+    }
+}

@@ -10,7 +10,7 @@ const TestComponent: React.FC<IProps> = () => {
     console.log('styles', styles)
     return (
         <div className={"testComponent " + styles['testComponent--hot']}>
-            <div className={styles.body}>Test component from new react component library</div>
+            <div className={styles.testComponentHot}>Test component from new react component library</div>
         </div>
     )
 }

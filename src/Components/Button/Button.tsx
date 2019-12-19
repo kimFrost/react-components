@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from './Button.scss'
-import { Button as StyledButton, ButtonOutline as StyledButtonOutline } from './Button.styles';
+//import { Button as StyledButton, ButtonOutline as StyledButtonOutline } from './Button.styles';
 
 interface IProps {
     onClick?: () => void
@@ -11,10 +11,10 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({ onClick, children, disabled, outline }) => {
     return (
-        <StyledButton outline={outline} onClick={onClick} disabled={disabled}>
-            {children}
-        </StyledButton>
-        // <button className={styles.btn + (outline ? ` ${styles.btnOutline}`: "")} onClick={onClick} disabled={disabled}>{children}</button>
+        // <StyledButton outline={outline} onClick={onClick} disabled={disabled}>
+        //     {children}
+        // </StyledButton>
+        <button className={styles.btn + (outline ? ` ${styles.btnOutline}`: "")} onClick={onClick} disabled={disabled}>{children}</button>
     )
 }
 

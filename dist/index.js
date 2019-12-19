@@ -1,5 +1,8 @@
-import TestComponent from './TestComponent/TestComponent';
-import Button from './Button/Button';
+import TestComponent from './Components/TestComponent';
+import Button from './Components/Button';
+import Field from './Components/Field';
+import FieldWrapper from './Components/FieldWrapper';
+import Checkbox from './Components/Checkbox';
 export var Greeter = function (name) { return "Hello " + name; };
-export { TestComponent, Button };
+export { TestComponent, Button, Field, FieldWrapper, Checkbox };
 //# sourceMappingURL=index.js.map
