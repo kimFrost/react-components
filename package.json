@@ -1,11 +1,14 @@
 {
   "name": "@kimfrost/react-components",
-  "version": "0.2.0",
+  "version": "0.2.0a",
   "author": {
     "name": "Kim Frost",
     "email": "kim@thatworks.dk",
     "url": "http://thatworks.dk"
   },
+  "keywords": [
+    "component-library"
+  ],
   "license": "ISC",
   "private": false,
   "description": "",
@@ -13,12 +16,14 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-ts": "tsc",
-    "build-rollup": "rollup -c && tsc"
+    "build": "rollup -c && tsc",
+    "build:watch": "rollup -cw"
   },
   "devDependencies": {
     "@types/css-modules": "^1.0.0",

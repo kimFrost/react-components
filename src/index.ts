@@ -3,13 +3,17 @@ import Button from './Components/Button';
 import Field from './Components/Field';
 import FieldWrapper from './Components/FieldWrapper';
 import Checkbox from './Components/Checkbox';
+import Radio from './Components/Radio/Radio';
+import Tooltip from './Components/Tooltip/Tooltip';
 
-export const Greeter = (name: string) => `Hello ${name}`;
+//export const Greeter = (name: string) => `Hello ${name}`;
 
 export { 
     TestComponent,
     Button,
     Field,
     FieldWrapper,
-    Checkbox
+    Checkbox,
+    Radio,
+    Tooltip
 }
