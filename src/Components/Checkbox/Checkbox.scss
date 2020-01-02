@@ -1,5 +1,8 @@
 
 $checkbox-dimensions: 20px !default;
+$checkbox-error-text-color: red !default;
+$checkbox-error-border-color: red !default;
+$checkbox-error-background-color: mix(white, $checkbox-error-border-color, 90) !default;
 
 .checkbox {
     display: flex;
@@ -36,28 +39,23 @@ $checkbox-dimensions: 20px !default;
     }
     &:checked {
         & ~ .checkbox__ui {
-            &::before {
-                display: flex;
-                content: "\2713";
-                position: absolute;
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                align-items: center;
-                justify-content: center;
+            & > * {
+                opacity: 1;
             }
         }
     }
     &:invalid {
         & ~ .checkbox__ui {
-            border-color: red;
+            background-color: var(--checkbox-error-background-color, #{$checkbox-error-background-color});
+            border-color: var(--checkbox-error-border-color, #{$checkbox-error-border-color});
         }
     }
 }
 
 .checkbox__ui {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     box-sizing: border-box;
     left: 0;
@@ -66,9 +64,13 @@ $checkbox-dimensions: 20px !default;
     width: 100%;
     pointer-events: none;
     border-radius: 2px;
-    border: 1px solid grey;   
+    border: 1px solid grey;
+    & > * {
+        opacity: 0;
+    }
 }
 
 .checkbox__error-text {
-    position: absolute;
+    //position: absolute;
+    color: var(--checkbox-error-text-color, #{$checkbox-error-text-color});
 }

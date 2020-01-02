@@ -1,15 +1,20 @@
 
 $tooltip-arrow-offset: 1em;
 $tooltip-border-width: 1px;
+$tooltip-border-color: green !default;
+$tooltip-text-color: inherit !default;
+$tooltip-font-size: inherit !default;
 
 .tooltip {
     display: block;
     position: relative;
     width: 12em;
     padding: 1em 1.5em;
-    border: $tooltip-border-width solid hotpink;
+    border: $tooltip-border-width solid var(--tooltip-border-color, #{$tooltip-border-color});
     background: white;
     box-shadow: 0 0 1em 0 rgba(black, 0.3);
+    color: var(--tooltip-text-color, #{$tooltip-text-color});
+    font-size: var(--tooltip-font-size, #{$tooltip-font-size});
     &::before {
         content: "";
         display: block;
