@@ -4,6 +4,9 @@ $btn-font-family: sans-serif !default;
 $btn-font-weight: 400 !default;
 $btn-text-color: white !default;
 $btn-background-color: green !default;
+$btn-background-color-hover: mix(black, $btn-background-color, 30%) !default; 
+$btn-background-color-active: mix(black, $btn-background-color, 10%) !default; 
+$btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
 
 .btn {
     display: flex;
@@ -14,13 +17,13 @@ $btn-background-color: green !default;
     position: relative; 
     overflow: hidden;
     min-width: 4em;
-    height: $btn-height;
+    height: var(--btn-height, #{$btn-height});
     padding: 0 2.5em;
     border-radius: 2em;
-    color: $btn-text-color;
-    background: $btn-background-color;
-    font-family: $btn-font-family;
-    font-weight: $btn-font-weight;
+    color: var(--btn-text-color, #{$btn-text-color});
+    background: var(--btn-background-color, #{$btn-background-color});
+    font-family: var(--btn-font-family, #{$btn-font-family});
+    font-weight: var(--btn-font-weight, #{$btn-font-weight});
     text-decoration: none;
     text-transform: uppercase;
     border: none;
@@ -38,15 +41,15 @@ $btn-background-color: green !default;
 }
 
 .btn:hover {
-    background: mix(black, $btn-background-color, 30%);
+    background: $btn-background-color-hover;
 }
 
 .btn:active {
-    background: mix(black, $btn-background-color, 10%);
+    background: $btn-background-color-active;
 }
 
 .btn:disabled {
-    background: mix(white, $btn-background-color, 50%);
+    background: $btn-background-color-disabled;
     cursor: auto;
 }
 
@@ -56,18 +59,18 @@ $btn-background-color: green !default;
     color: $btn-background-color;   
     &:hover {
         background: transparent;
-        border-color: mix(black, $btn-background-color, 30%);
-        color: mix(black, $btn-background-color, 30%);
+        border-color: $btn-background-color-hover;
+        color: $btn-background-color-hover;
     }
     &:active {
         background: transparent;
-        border-color: mix(black, $btn-background-color, 10%);
-        color: mix(black, $btn-background-color, 10%);
+        border-color: $btn-background-color-hover;
+        color: $btn-background-color-hover;
     }
     &:disabled {
         background-color: transparent;
-        color: mix(white, $btn-background-color, 50%);
-        border-color: mix(white, $btn-background-color, 50%);
+        color: $btn-background-color-disabled;
+        border-color: $btn-background-color-disabled;
     } 
 }
 
