@@ -54,7 +54,7 @@ $btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
 }
 
 .btn--outline {
-    background-color: var(--btn-text-color, #{$btn-text-color});
+    background-color: transparent;
     border: 1px solid var(--btn-background-color, #{$btn-background-color});
     color: var(--btn-background-color, #{$btn-background-color});
     &:hover {

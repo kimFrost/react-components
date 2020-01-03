@@ -3,7 +3,7 @@ import pkg from './package.json';
 import { terser } from "rollup-plugin-terser";
 //import postcss from 'rollup-plugin-postcss';
 import postcss from 'rollup-plugin-postcss-modules';
-//import resolve from "rollup-plugin-node-resolve";
+import resolve from "rollup-plugin-node-resolve";
 
 export default {
     input: 'src/index.ts', // our source file
@@ -18,15 +18,19 @@ export default {
         }
     ],
     external: [
-        ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
+        ...Object.keys(pkg.dependencies || {})
     ],
+    globals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+    },
     plugins: [
         typescript({
             typescript: require('typescript'),
         }),
 
-        //resolve(),
+        
 
         // commonjs({
         //     include: ["node_modules/**"],
@@ -41,6 +45,7 @@ export default {
         //     }
         // }),
         terser(), // minifies generated bundles
+        resolve(),
         postcss({
             extract: false,
             writeDefinitions: true,

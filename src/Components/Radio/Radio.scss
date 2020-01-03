@@ -1,5 +1,8 @@
 
 $radio-dimensions: 20px !default;
+$radio-error-text-color: red !default;
+$radio-error-border-color: red !default;
+$radio-error-background-color: mix(white, $radio-error-border-color, 90) !default;
 
 .radio {
     display: flex;
@@ -51,7 +54,8 @@ $radio-dimensions: 20px !default;
     }
     &:invalid {
         & ~ .radio__ui {
-            border-color: red;
+            background-color: var(--radio-error-background-color, #{$radio-error-background-color});
+            border-color: var(--radio-error-border-color, #{$radio-error-border-color});
         }
     }
 }
@@ -72,5 +76,5 @@ $radio-dimensions: 20px !default;
 }
 
 .radio__error-text {
-    position: absolute;
+    color: var(--radio-error-text-color, #{$radio-error-text-color});
 }

@@ -30,7 +30,7 @@ const Radio: React.FC<IProps> = ({ disabled, checked, invalid, invalidText }) =>
                 <div className={styles.radioUi}></div>
             </div>
             {invalid && invalidText &&
-                <span>{invalidText}</span>
+                <span className={styles.radioErrorText}>{invalidText}</span>
             }
         </div>
     )

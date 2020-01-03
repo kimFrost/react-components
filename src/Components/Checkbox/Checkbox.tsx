@@ -47,7 +47,7 @@ const Checkbox: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, i
                 </div>
             </div>
             {invalid && invalidText &&
-                <span>{invalidText}</span>
+                <span className={styles.checkboxErrorText}>{invalidText}</span>
             }
         </div>
     )
