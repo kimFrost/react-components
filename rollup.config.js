@@ -26,11 +26,16 @@ export default {
         'react-dom': 'ReactDOM'
     },
     plugins: [
+        postcss({
+            extract: false,
+            writeDefinitions: true,
+            modules: true,
+            use: ['sass'],
+            //extensions: ['.module.scss']
+        }),
         typescript({
             typescript: require('typescript'),
         }),
-
-        
 
         // commonjs({
         //     include: ["node_modules/**"],
@@ -46,12 +51,6 @@ export default {
         // }),
         terser(), // minifies generated bundles
         resolve(),
-        postcss({
-            extract: false,
-            writeDefinitions: true,
-            modules: true,
-            use: ['sass'],
-            //extensions: ['.module.scss']
-        }),
+       
     ]
 };
