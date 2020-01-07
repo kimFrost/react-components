@@ -20,17 +20,26 @@ interface IProps {
     color?: EColor | string
 }
 
+const getColorClass = (color: EColor): string => {
+    switch (color) {
+        case EColor.LIGHT:
+            return styles.boxLight
+        default:
+            return ''
+    }
+}
+
 const Box: React.FC<IProps> = ({ children, color }) => {
-    const colorClass = ''
+
     return (
-        <div className={styles.box + ` ${colorClass}`}>
+        <div className={styles.box + ` ${getColorClass(color as EColor)}`}>
             {children}
         </div>
     )
 }
 
 Box.defaultProps = {
-  color: EColor.NONE
+    color: EColor.NONE
 }
 
 export default Box

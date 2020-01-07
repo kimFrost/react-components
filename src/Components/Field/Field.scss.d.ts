@@ -3,6 +3,7 @@ export const fieldFocus: string
 export const fieldError: string
 export const field__error: string
 export const fieldInvalid: string
+export const fieldFullWidth: string
 interface Namespace {
 	"field": string,
 	"fieldFocus": string,
@@ -11,6 +12,8 @@ interface Namespace {
 	"field__error": string,
 	"fieldInvalid": string,
 	"field--invalid": string,
+	"fieldFullWidth": string,
+	"field--full-width": string,
 }
 declare const fieldScss: Namespace
 export default fieldScss

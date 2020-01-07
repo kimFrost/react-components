@@ -8,7 +8,11 @@ export interface IProps {
     focus?: boolean;
     invalid?: boolean;
     disabled?: boolean;
-    onChange?: (val: string) => void;
+    required?: boolean;
+    fullWidth?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 declare const Field: React.FC<IProps>;
 export default Field;

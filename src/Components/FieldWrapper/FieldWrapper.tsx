@@ -1,35 +1,86 @@
 
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Field from './../Field';
 import { IProps as IFieldProps } from './../Field/Field';
-import './FieldWrapper.scss'
+import styles from './FieldWrapper.scss'
 
 export enum ELabelPosition {
     TOP = 'top',
-    LEFT = 'left'
+    LEFT = 'left',
+    INSIDE = 'inside',
 }
 
-interface IProps extends IFieldProps {
+export interface IProps extends IFieldProps {
     label?: string
     labelPos?: string | ELabelPosition
+    control?: JSX.Element
+    requiredIcon?: JSX.Element
+    //[x: string]: any allow any props
+}
+
+const getPositionClass = (pos: string): string => {
+    switch (pos) {
+        case ELabelPosition.LEFT:
+            return styles.fieldWrapperLabelLeft
+        case ELabelPosition.TOP:
+            return styles.fieldWrapperLabelTop
+        case ELabelPosition.INSIDE:
+            return styles.fieldWrapperLabelInside
+        default:
+            return styles.fieldWrapperLabelLeft
+    }
 }
 
 const FieldWrapper: React.FC<IProps> = (props) => {
 
-    const { id, label, labelPos } = props
+    const { id, label, labelPos, control, required, requiredIcon, value } = props;
+
+    const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
+
+    useEffect(() => {
+
+    }, [value])
 
     return (
-        <div className={'field-wrapper' + ` field-wrapper--label-${labelPos}`}>
+        <div className={
+            [
+                styles.fieldWrapper,
+                getPositionClass(labelPos as ELabelPosition),
+                (hideLabel ? styles.fieldWrapperHideLabel : '')
+            ].join(' ')
+        }>
             {label &&
-                <label className={'field-wrapper__label'} htmlFor={id}>{label}</label>
+                <label className={styles.fieldWrapperLabel} htmlFor={id}>
+                    {label}
+                    {required && requiredIcon &&
+                        <span className={styles.fieldWrapperRequired}>
+                            {React.cloneElement(requiredIcon)}
+                        </span>
+                    }
+                </label>
             }
-            <Field {...props} />
+            {control &&
+                React.cloneElement(control, {
+                    ...props,
+                    onChange: (e) => {
+                        setHideLabel(e.target.value.length || document.activeElement == e.target)
+                    },
+                    onFocus: () => {
+                        setHideLabel(true)
+                    },
+                    onBlur: (e:React.FocusEvent<HTMLInputElement>) => {
+                        setHideLabel(e.target.value.length > 0)
+                    }
+                })
+            }
         </div>
     )
 }
 
 FieldWrapper.defaultProps = {
-    labelPos: ELabelPosition.TOP
+    labelPos: ELabelPosition.TOP,
+    control: <Field />,
+    requiredIcon: <React.Fragment>*</React.Fragment>,
 }
 
 export default FieldWrapper

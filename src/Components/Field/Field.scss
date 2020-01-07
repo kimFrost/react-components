@@ -51,3 +51,7 @@ $field-focus-color: green !default;
         display: block;
     }
 }
+
+.field--full-width {
+    min-width: 100%;
+}
