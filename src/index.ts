@@ -6,6 +6,7 @@ import Radio from './Components/Radio/Radio';
 import Tooltip from './Components/Tooltip/Tooltip';
 import Container from './Components/Container/Container';
 import Box from './Components/Box/Box';
+import RadioGroup from './Components/RadioGroup/RadioGroup';
 
 //export const Greeter = (name: string) => `Hello ${name}`;
 
@@ -15,6 +16,7 @@ export {
     FieldWrapper,
     Checkbox,
     Radio,
+    RadioGroup,
     Tooltip,
     Container,
     Box

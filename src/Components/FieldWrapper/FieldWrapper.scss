@@ -1,6 +1,6 @@
 
 .field-wrapper {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
@@ -8,6 +8,11 @@
 
 .field-wrapper__label {
     display: block;
+    margin: 0;
+}
+
+.field-wrapper__label[for] {
+    cursor: pointer;
 }
 
 .field-wrapper__required {
@@ -33,7 +38,7 @@
         margin: 0;
         transform-origin: 0 0;
         transform: translate(0, 50%) scale(1);
-        transition: all linear 200ms;
+        transition: all linear 100ms;
         pointer-events: none;
     }
 }
@@ -44,4 +49,8 @@
             transform: translate(0, 0) scale(0.5);
         }
     }
+}
+
+.field-wrapper--full-width {
+    width: 100%;
 }

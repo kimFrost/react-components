@@ -23,6 +23,7 @@ $field-focus-color: green !default;
     font-size: 1em;
     font-weight: var(--field-font-weight, #{$field-font-weight});
     font-family: var(--field-font-family, #{$field-font-family});
+    transition: border-color 300ms ease;
 }
 
 .field:focus,

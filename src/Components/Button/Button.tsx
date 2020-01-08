@@ -7,6 +7,7 @@ interface IProps {
     onClick?: () => void
     disabled?: boolean
     outline?: boolean
+    type?: string
 }
 
 const Button: React.FC<IProps> = ({ onClick, children, disabled, outline }) => {
@@ -14,7 +15,11 @@ const Button: React.FC<IProps> = ({ onClick, children, disabled, outline }) => {
         // <StyledButton outline={outline} onClick={onClick} disabled={disabled}>
         //     {children}
         // </StyledButton>
-        <button className={styles.btn + (outline ? ` ${styles.btnOutline}`: "")} onClick={onClick} disabled={disabled}>{children}</button>
+        <button
+            className={styles.btn + (outline ? ` ${styles.btnOutline}` : "")}
+            onClick={onClick} disabled={disabled}>
+            {children}
+        </button>
     )
 }
 

@@ -33,7 +33,7 @@ const getPositionClass = (pos: string): string => {
 
 const FieldWrapper: React.FC<IProps> = (props) => {
 
-    const { id, label, labelPos, control, required, requiredIcon, value } = props;
+    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value } = props;
 
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
@@ -46,7 +46,8 @@ const FieldWrapper: React.FC<IProps> = (props) => {
             [
                 styles.fieldWrapper,
                 getPositionClass(labelPos as ELabelPosition),
-                (hideLabel ? styles.fieldWrapperHideLabel : '')
+                (hideLabel ? styles.fieldWrapperHideLabel : ''),
+                (fullWidth ? styles.fieldWrapperFullWidth : '')
             ].join(' ')
         }>
             {label &&

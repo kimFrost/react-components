@@ -6,4 +6,5 @@ import Radio from './Components/Radio/Radio';
 import Tooltip from './Components/Tooltip/Tooltip';
 import Container from './Components/Container/Container';
 import Box from './Components/Box/Box';
-export { Button, Field, FieldWrapper, Checkbox, Radio, Tooltip, Container, Box };
+import RadioGroup from './Components/RadioGroup/RadioGroup';
+export { Button, Field, FieldWrapper, Checkbox, Radio, RadioGroup, Tooltip, Container, Box };

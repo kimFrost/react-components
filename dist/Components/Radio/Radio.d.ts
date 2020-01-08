@@ -4,6 +4,9 @@ interface IProps {
     checked?: boolean;
     invalid?: boolean;
     invalidText?: string;
+    value?: string;
+    name?: string;
+    id?: string;
 }
 declare const Radio: React.FC<IProps>;
 export default Radio;

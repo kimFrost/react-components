@@ -5,6 +5,7 @@ export const fieldWrapperLabelLeft: string
 export const fieldWrapperLabelTop: string
 export const fieldWrapperLabelInside: string
 export const fieldWrapperHideLabel: string
+export const fieldWrapperFullWidth: string
 interface Namespace {
 	"fieldWrapper": string,
 	"field-wrapper": string,
@@ -20,6 +21,8 @@ interface Namespace {
 	"field-wrapper--label-inside": string,
 	"fieldWrapperHideLabel": string,
 	"field-wrapper--hide-label": string,
+	"fieldWrapperFullWidth": string,
+	"field-wrapper--full-width": string,
 }
 declare const fieldWrapperScss: Namespace
 export default fieldWrapperScss

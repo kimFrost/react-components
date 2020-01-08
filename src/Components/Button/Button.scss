@@ -9,7 +9,7 @@ $btn-background-color-active: mix(black, $btn-background-color, 10%) !default;
 $btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
 
 .btn {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
