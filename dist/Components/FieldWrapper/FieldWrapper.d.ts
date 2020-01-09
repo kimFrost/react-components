@@ -3,7 +3,8 @@ import { IProps as IFieldProps } from './../Field/Field';
 export declare enum ELabelPosition {
     TOP = "top",
     LEFT = "left",
-    INSIDE = "inside"
+    INSIDE = "inside",
+    RIGHT = "right"
 }
 export interface IProps extends IFieldProps {
     label?: string;

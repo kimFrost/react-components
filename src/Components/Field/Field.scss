@@ -9,6 +9,8 @@ $field-error-background-color: mix(white, $field-error-color, 90) !default;
 $field-focus-color: green !default;
 
 .field {
+    display: inline-flex;
+    align-items: center;
     box-sizing: border-box;    
     background: var(--field-background-color, #{$field-background-color});
     border-radius: 1em;

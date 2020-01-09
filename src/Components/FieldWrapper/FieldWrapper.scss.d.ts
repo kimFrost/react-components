@@ -2,6 +2,7 @@ export const fieldWrapper: string
 export const fieldWrapperLabel: string
 export const fieldWrapperRequired: string
 export const fieldWrapperLabelLeft: string
+export const fieldWrapperLabelRight: string
 export const fieldWrapperLabelTop: string
 export const fieldWrapperLabelInside: string
 export const fieldWrapperHideLabel: string
@@ -15,6 +16,8 @@ interface Namespace {
 	"field-wrapper__required": string,
 	"fieldWrapperLabelLeft": string,
 	"field-wrapper--label-left": string,
+	"fieldWrapperLabelRight": string,
+	"field-wrapper--label-right": string,
 	"fieldWrapperLabelTop": string,
 	"field-wrapper--label-top": string,
 	"fieldWrapperLabelInside": string,

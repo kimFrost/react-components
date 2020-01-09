@@ -24,6 +24,11 @@
     align-items: center;
 }
 
+.field-wrapper--label-right {
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
 .field-wrapper--label-top {
     flex-direction: column;
 }

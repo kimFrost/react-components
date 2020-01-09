@@ -1,0 +1,16 @@
+
+.dropdown {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.dropdown__select {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.1;
+    option {
+        opacity: 0.2;
+    }
+}

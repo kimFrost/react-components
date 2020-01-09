@@ -7,4 +7,5 @@ import Tooltip from './Components/Tooltip/Tooltip';
 import Container from './Components/Container/Container';
 import Box from './Components/Box/Box';
 import RadioGroup from './Components/RadioGroup/RadioGroup';
-export { Button, Field, FieldWrapper, Checkbox, Radio, RadioGroup, Tooltip, Container, Box };
+import Dropdown from './Components/Dropdown/index';
+export { Button, Field, FieldWrapper, Checkbox, Radio, RadioGroup, Tooltip, Container, Box, Dropdown };

@@ -10,12 +10,17 @@ interface IProps {
     type?: string
 }
 
-const Button: React.FC<IProps> = ({ onClick, children, disabled, outline }) => {
+const Button: React.FC<IProps> = ({ onClick, children, disabled, outline, type }) => {
+    const buttonProps:any = {}
+    if (type) {
+        buttonProps['type'] = type;
+    }
     return (
         // <StyledButton outline={outline} onClick={onClick} disabled={disabled}>
         //     {children}
         // </StyledButton>
         <button
+            {...buttonProps}
             className={styles.btn + (outline ? ` ${styles.btnOutline}` : "")}
             onClick={onClick} disabled={disabled}>
             {children}
