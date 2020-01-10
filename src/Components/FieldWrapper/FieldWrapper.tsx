@@ -35,8 +35,8 @@ const getPositionClass = (pos: string): string => {
 }
 
 const FieldWrapper: React.FC<IProps> = (props) => {
-    
-    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value } = props;
+
+    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value, children } = props;
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
     useEffect(() => {
@@ -76,6 +76,7 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                     }
                 })
             }
+            {children}
         </div>
     )
 }

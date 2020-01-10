@@ -50,7 +50,7 @@ export default {
         //     }
         // }),
         terser(), // minifies generated bundles
-        resolve(),
+        //resolve(),
        
     ]
 };
