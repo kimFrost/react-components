@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Field.scss'
 import Checkbox from '../Checkbox';
 
@@ -25,6 +25,19 @@ const Field: React.FC<IProps> = (props) => {
         value, type, id, placeholder, disabled, focus, invalid, errorText, required, fullWidth, 
         onChange, onFocus, onBlur } = props;
 
+    const [inputValue, setInputValue] = useState(value)
+
+    useEffect(() => {
+        setInputValue(value)
+    }, [value])
+
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value)
+        {onChange && 
+            onChange(e)
+        }
+    }
+
     if (type == "checkbox") {
         return <Checkbox {...props} />
     }
@@ -40,11 +53,11 @@ const Field: React.FC<IProps> = (props) => {
                     ].join(' ')}
                     id={id}
                     type={type}
-                    value={value}
+                    value={inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
                     required={required}
-                    onChange={onChange}
+                    onChange={handleOnChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />
@@ -58,6 +71,7 @@ const Field: React.FC<IProps> = (props) => {
 
 Field.defaultProps = {
     type: 'text',
+    value: '',
     required: false,
     fullWidth: false,
     onChange: () => { },

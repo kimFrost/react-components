@@ -9,6 +9,8 @@ export const dropdownMenuItem: string
 export const dropdownSelect: string
 export const dropdown__select: string
 export const dropdownIsOpen: string
+export const dropdownMenuItemFocus: string
+export const dropdownMenuItemSelected: string
 interface Namespace {
 	"dropdown": string,
 	"dropdownInput": string,
@@ -23,6 +25,10 @@ interface Namespace {
 	"dropdown__select": string,
 	"dropdownIsOpen": string,
 	"dropdown--is-open": string,
+	"dropdownMenuItemFocus": string,
+	"dropdown__menu-item--focus": string,
+	"dropdownMenuItemSelected": string,
+	"dropdown__menu-item--selected": string,
 }
 declare const dropdownScss: Namespace
 export default dropdownScss

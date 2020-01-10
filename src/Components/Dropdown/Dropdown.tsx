@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Dropdown.scss'
 import Field from '../Field';
 
@@ -37,25 +37,77 @@ Keys to bind
 const Option: React.FC = () => {
 
     return (
-        <div className={styles.dropdownMenuItem}></div>
+        <div className={styles.dropdownMenuItem} onMouseMove={() => {
+
+        }}></div>
     )
 }
 
 const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
 
     const [isOpen, setIsOpen] = useState(false)
-    const [hightlightedItem, setHighlightedItem] = useState(null)
+    const [focusedOption, setFocusedOption] = useState<IOption>()
+    const [selectedOption, setSelectedOption] = useState<IOption>()
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    useEffect(() => {
+        {
+            isOpen &&
+            window.addEventListener('keydown', handleUserKeyPress);
+        }
+        return () => {
+            window.removeEventListener('keydown', handleUserKeyPress);
+        }
+    }, [isOpen])
+
+    useEffect(() => {
+        /*
+        {onChange &&
+            onChange(selectedOption)
+        }
+        */
+    }, [selectedOption])
+
+    const handleUserKeyPress = useCallback((e: KeyboardEvent) => {
+        const { key } = e;
+        switch (key) {
+            case 'ArrowUp':
+                e.preventDefault()
+                switchOptionFocus(-1)
+                break;
+            case 'ArrowDown':
+                e.preventDefault()
+                switchOptionFocus(1)
+                break;
+            default:
+                break;
+        }
+    }, [])
+    
+
+
+    const switchOptionFocus = (direction: number) => {
+        if (options) {
+            const currentIndex = focusedOption ? options.indexOf(focusedOption) : -1;
+            const nextIndex = Math.max(-1, Math.min(currentIndex + direction, options.length - 1));
+            console.log('next option', options[nextIndex]);
+            setFocusedOption(options[nextIndex]);
+        }    
+    }
+
+    const handleControlFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsOpen(true);
     }
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleControlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsOpen(false);
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleControlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // filter list
+    }
 
+    const handleSelect = (option: IOption) => {
+        setSelectedOption(option)
     }
 
     return (
@@ -65,13 +117,17 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
                 (isOpen ? styles.dropdownIsOpen : '')
             ].join(' ')}>
                 <div className={styles.dropdownInput}>
-                    <Field onChange={handleChange} onFocus={handleFocus} onBlur={handleBlur} />
+                    <Field onChange={handleControlChange} onFocus={handleControlFocus} onBlur={handleControlBlur} value={selectedOption?.label} />
                 </div>
                 <div className={styles.dropdownList}>
                     <div className={styles.dropdownMenu}>
                         {options && options.map((option) => {
                             return (
-                                <div className={styles.dropdownMenuItem}>{option.label}</div>
+                                <div className={[
+                                    styles.dropdownMenuItem,
+                                    (selectedOption === option ? styles.dropdownMenuItemSelected : ''),
+                                    (focusedOption === option ? styles.dropdownMenuItemFocus : '')
+                                ].join(' ')} onClick={(e) => handleSelect(option)}>{option.label}</div>
                             )
                         })}
                     </div>
