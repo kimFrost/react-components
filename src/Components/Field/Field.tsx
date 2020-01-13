@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import styles from './Field.scss'
 import Checkbox from '../Checkbox';
 
+
+
 export interface IProps {
+    innerRef?: React.RefObject<HTMLInputElement>
     type?: string
     id?: string
-    value?: string
+    value?: string | Array<string>
     placeholder?: string
     errorText?: string
     focus?: boolean
@@ -17,13 +20,14 @@ export interface IProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+    onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
 }
 
 const Field: React.FC<IProps> = (props) => {
 
-    const { 
-        value, type, id, placeholder, disabled, focus, invalid, errorText, required, fullWidth, 
-        onChange, onFocus, onBlur } = props;
+    const {
+        value, type, innerRef, id, placeholder, disabled, focus, invalid, errorText, required, fullWidth,
+        onChange, onFocus, onBlur, onClick } = props;
 
     const [inputValue, setInputValue] = useState(value)
 
@@ -33,7 +37,8 @@ const Field: React.FC<IProps> = (props) => {
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
-        {onChange && 
+        {
+            onChange &&
             onChange(e)
         }
     }
@@ -52,15 +57,22 @@ const Field: React.FC<IProps> = (props) => {
                         (fullWidth ? styles.fieldFullWidth : '')
                     ].join(' ')}
                     id={id}
+                    ref={innerRef}
                     type={type}
-                    value={inputValue}
+                    value={Array.isArray(inputValue) ? '' : inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
                     required={required}
                     onChange={handleOnChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
+                    onClick={onClick}
                 />
+                {Array.isArray(inputValue) && inputValue.length &&
+                    <div className={styles.fieldSubfields}>
+                        {inputValue}
+                    </div>
+                }
                 {invalid && errorText &&
                     <span className={styles.fieldError}>{errorText}</span>
                 }

@@ -38,6 +38,17 @@ $field-focus-color: green !default;
     border-color: lightgrey;
 }
 
+.field__subfields {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0.5em 1em;
+    pointer-events: none;
+}
+
 .field__error {
     display: none;
     margin-top: 0.5em;
