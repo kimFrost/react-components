@@ -35,14 +35,6 @@ Keys to bind
     Field as toggle input, both as search and button
 */
 
-const Option: React.FC = () => {
-
-    return (
-        <div className={styles.dropdownMenuItem} onMouseMove={() => {
-
-        }}></div>
-    )
-}
 
 const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
 
@@ -67,7 +59,7 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
         return () => {
             window.removeEventListener('keydown', handleUserKeyPress);
         }
-    }, [hasFocus, isOpen, focusedOption]) // These are the required dependencies for the switch logic.
+    }, [hasFocus, isOpen, focusedOption, filteredOptions]) // These are the required dependencies for the switch logic.
 
     useEffect(() => {
         /*
@@ -93,6 +85,11 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
                 e.preventDefault()
                 focusedOption ? selectOption(focusedOption) : null
                 break;
+            case 'Escape': {
+                e.preventDefault()
+                setIsOpen(false)
+                resetSearch()
+            }
             default:
                 break;
         }
@@ -101,7 +98,6 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
     const switchOptionFocus = (direction: number) => {
         const currentIndex = focusedOption ? filteredOptions.indexOf(focusedOption) : -1;
         const nextIndex = Math.max(0, Math.min(currentIndex + direction, filteredOptions.length - 1));
-        //console.log('indexes', currentIndex, nextIndex)
         setFocusedOption(() => {
             return filteredOptions[nextIndex]
         });
