@@ -54,12 +54,13 @@ const Field: React.FC<IProps> = (props) => {
                         styles.field,
                         (focus ? styles.fieldFocus : ''),
                         (invalid ? styles.fieldInvalid : ''),
-                        (fullWidth ? styles.fieldFullWidth : '')
+                        (fullWidth ? styles.fieldFullWidth : ''),
+                        (Array.isArray(inputValue) ? styles.fieldHasSubfields : '')
                     ].join(' ')}
                     id={id}
                     ref={innerRef}
                     type={type}
-                    value={Array.isArray(inputValue) ? '' : inputValue}
+                    value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
                     required={required}

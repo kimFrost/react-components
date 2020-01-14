@@ -69,3 +69,8 @@ $field-focus-color: green !default;
 .field--full-width {
     min-width: 100%;
 }
+
+.field--has-subfields {
+    //color: transparent;
+    opacity: 1; // just so it will compile
+}

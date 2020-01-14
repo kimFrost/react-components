@@ -99,13 +99,12 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
     }
 
     const switchOptionFocus = (direction: number) => {
-        if (options) {
-            const currentIndex = focusedOption ? options.indexOf(focusedOption) : -1;
-            const nextIndex = Math.max(0, Math.min(currentIndex + direction, options.length - 1));
-            setFocusedOption(() => {
-                return options[nextIndex]
-            });
-        }
+        const currentIndex = focusedOption ? filteredOptions.indexOf(focusedOption) : -1;
+        const nextIndex = Math.max(0, Math.min(currentIndex + direction, filteredOptions.length - 1));
+        //console.log('indexes', currentIndex, nextIndex)
+        setFocusedOption(() => {
+            return filteredOptions[nextIndex]
+        });
     }
 
     const handleControlClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -126,9 +125,10 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
     }
 
     const handleControlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('handleControlChange', e.target.value)
-        //const nextSearchString = selectedOption ? e.target.value.replace(selectedOption.label, '') : e.target.value
-        //setSearchText(nextSearchString)
+        setSearchText(e.target.value)
+        if (e.target.value.length) {
+            setIsOpen(true)
+        }
     }
 
     const selectOption = (option: IOption) => {
@@ -163,7 +163,10 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
                         onFocus={handleControlFocus}
                         onBlur={handleControlBlur}
                         onClick={handleControlClick}
-                        value={[searchText, selectedOption ? selectedOption.label : '']} />
+                        value={searchText.length ? searchText : ''} />
+                    <div className={styles.dropdownValueContainer}>{searchText.length === 0 &&
+                        selectedOption ? selectedOption.label : ''
+                    }</div>
                 </div>
                 <div className={styles.dropdownList}>
                     <div className={styles.dropdownMenu}>

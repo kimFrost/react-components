@@ -52,6 +52,19 @@ $dropdown-option-selected-color: green !default;
     }
 }
 
+.dropdown__value-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 0.5em 1em;
+    pointer-events: none;
+}
+
 .dropdown--is-open {
     .dropdown__list {
         opacity: 1;

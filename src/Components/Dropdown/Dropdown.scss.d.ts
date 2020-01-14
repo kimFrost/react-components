@@ -8,6 +8,7 @@ export const dropdown__menu: string
 export const dropdownMenuItem: string
 export const dropdownSelect: string
 export const dropdown__select: string
+export const dropdownValueContainer: string
 export const dropdownIsOpen: string
 export const dropdownMenuItemFocus: string
 export const dropdownMenuItemSelected: string
@@ -23,6 +24,8 @@ interface Namespace {
 	"dropdown__menu-item": string,
 	"dropdownSelect": string,
 	"dropdown__select": string,
+	"dropdownValueContainer": string,
+	"dropdown__value-container": string,
 	"dropdownIsOpen": string,
 	"dropdown--is-open": string,
 	"dropdownMenuItemFocus": string,
