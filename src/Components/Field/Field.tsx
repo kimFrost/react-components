@@ -16,6 +16,7 @@ export interface IProps {
     invalid?: boolean
     disabled?: boolean
     required?: boolean
+    locked?: boolean
     fullWidth?: boolean
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
@@ -27,7 +28,7 @@ const Field: React.FC<IProps> = (props) => {
 
     const {
         value, type, innerRef, id, placeholder, disabled, focus, invalid, errorText, required, fullWidth,
-        onChange, onFocus, onBlur, onClick } = props;
+        onChange, onFocus, onBlur, onClick, locked } = props;
 
     const [inputValue, setInputValue] = useState(value)
 
@@ -36,6 +37,7 @@ const Field: React.FC<IProps> = (props) => {
     }, [value])
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (locked) return
         setInputValue(e.target.value)
         {
             onChange &&
@@ -55,7 +57,8 @@ const Field: React.FC<IProps> = (props) => {
                         (focus ? styles.fieldFocus : ''),
                         (invalid ? styles.fieldInvalid : ''),
                         (fullWidth ? styles.fieldFullWidth : ''),
-                        (Array.isArray(inputValue) ? styles.fieldHasSubfields : '')
+                        (Array.isArray(inputValue) ? styles.fieldHasSubfields : ''),
+                        (locked ? styles.fieldLocked : '')
                     ].join(' ')}
                     id={id}
                     ref={innerRef}

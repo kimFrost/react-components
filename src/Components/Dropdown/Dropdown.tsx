@@ -15,28 +15,21 @@ interface IProps {
     closeIcon?: JSX.Element
     options?: Array<IOption>
     searchable?: boolean
+    filterable?: boolean
+    fullWidth?: boolean
     onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
+    onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 /*
-Keys to bind
-- ArrowUp
-- ArrowDown
-- Enter
-- Escape
+TODO: Keys to bind
 - PageUp
 - PageDown
 - Home
 - End
 */
 
-/*
-    Add icon support to FieldWrapper, Field or maybe own wrapper component
-    Field as toggle input, both as search and button
-*/
-
-
-const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
+const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options, openIcon, closeIcon, searchable, filterable, fullWidth }) => {
 
     const [hasFocus, setHasFocus] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -45,12 +38,16 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
     const [selectedOption, setSelectedOption] = useState<IOption>()
     const controlRef = createRef<HTMLInputElement>()
 
-    const filteredOptions = options ? options.filter(option => {
+    const filteredOptions = filterable ? options ? options.filter(option => {
         if (searchText.length) {
-            return (option.value.includes(searchText) || option.label.includes(searchText))
+            return option.label.toLowerCase().includes(searchText) || (typeof option.value === 'string' ? (option.value.toLowerCase().includes(searchText)) : false)
         }
         else return true
-    }) : []
+    }) : [] : (options ? options : [])
+
+    useEffect(() => {
+
+    }, [options, searchText])
 
     useEffect(() => {
         if (hasFocus) {
@@ -125,6 +122,7 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
         if (e.target.value.length) {
             setIsOpen(true)
         }
+        onInputChange ? onInputChange(e) : null
     }
 
     const selectOption = (option: IOption) => {
@@ -150,7 +148,8 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
         <React.Fragment>
             <div className={[
                 styles.dropdown,
-                (isOpen ? styles.dropdownIsOpen : '')
+                (isOpen ? styles.dropdownIsOpen : ''),
+                (fullWidth ? styles.dropdownFullWidth : '')
             ].join(' ')}>
                 <div className={styles.dropdownInput}>
                     <Field
@@ -159,10 +158,19 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
                         onFocus={handleControlFocus}
                         onBlur={handleControlBlur}
                         onClick={handleControlClick}
+                        locked={!searchable}
+                        fullWidth={fullWidth}
                         value={searchText.length ? searchText : ''} />
                     <div className={styles.dropdownValueContainer}>{searchText.length === 0 &&
                         selectedOption ? selectedOption.label : ''
                     }</div>
+                    <div className={styles.dropdownIcon}>
+                        {isOpen ?
+                            closeIcon ? React.cloneElement(closeIcon) : null
+                            :
+                            openIcon ? React.cloneElement(openIcon) : null
+                        }
+                    </div>
                 </div>
                 <div className={styles.dropdownList}>
                     <div className={styles.dropdownMenu}>
@@ -182,6 +190,9 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
                                 >{option.label}</div>
                             )
                         })}
+                        {filteredOptions.length === 0 &&
+                            <div className={styles.dropdownMenuItem}>Ingen resultater</div>
+                        }
                     </div>
                 </div>
             </div>
@@ -191,8 +202,10 @@ const Dropdown: React.FC<IProps> = ({ onChange, children, options }) => {
 
 Dropdown.defaultProps = {
     searchable: false,
+    filterable: true,
     openIcon: <span>↓</span>,
-    closeIcon: <span>↑</span>
+    closeIcon: <span>↑</span>,
+    fullWidth: false
 };
 
 

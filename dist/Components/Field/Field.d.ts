@@ -10,6 +10,7 @@ export interface IProps {
     invalid?: boolean;
     disabled?: boolean;
     required?: boolean;
+    locked?: boolean;
     fullWidth?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;

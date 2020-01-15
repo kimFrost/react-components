@@ -7,6 +7,7 @@ export const field__error: string
 export const fieldInvalid: string
 export const fieldFullWidth: string
 export const fieldHasSubfields: string
+export const fieldLocked: string
 interface Namespace {
 	"field": string,
 	"fieldFocus": string,
@@ -21,6 +22,8 @@ interface Namespace {
 	"field--full-width": string,
 	"fieldHasSubfields": string,
 	"field--has-subfields": string,
+	"fieldLocked": string,
+	"field--locked": string,
 }
 declare const fieldScss: Namespace
 export default fieldScss

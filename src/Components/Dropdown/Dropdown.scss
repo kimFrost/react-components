@@ -12,7 +12,8 @@ $dropdown-option-selected-color: green !default;
 
 
 .dropdown__input {
-    opacity: 1;
+    cursor: pointer;
+    width: inherit;
 }
 
 
@@ -20,9 +21,7 @@ $dropdown-option-selected-color: green !default;
     position: absolute;
     top: 100%;
     width: 100%;
-    max-height: 0;
     margin-top: 3px;
-    overflow-y: auto;
     opacity: 0;
     z-index: 1;
     //transition: all 500ms ease;
@@ -36,6 +35,8 @@ $dropdown-option-selected-color: green !default;
     border: 1px solid;
     background-color: var(--dropdown-list-background-color, #{$dropdown-list-background-color});
     border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
+    overflow-y: auto;
+    max-height: 0;
 }
 
 .dropdown__menu-item {
@@ -65,9 +66,23 @@ $dropdown-option-selected-color: green !default;
     pointer-events: none;
 }
 
+.dropdown__icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0.5em 1em;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
 .dropdown--is-open {
     .dropdown__list {
         opacity: 1;
+    }
+    .dropdown__menu {
         max-height: 300px;
     }
 }
@@ -78,4 +93,8 @@ $dropdown-option-selected-color: green !default;
 
 .dropdown__menu-item--selected {
     color: var(--dropdown-option-selected-color, #{$dropdown-option-selected-color})
+}
+
+.dropdown--full-width {
+    width: 100%;
 }
