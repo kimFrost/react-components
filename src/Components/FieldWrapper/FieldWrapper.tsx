@@ -16,6 +16,7 @@ export interface IProps extends IFieldProps {
     labelPos?: string | ELabelPosition
     control?: JSX.Element
     requiredIcon?: JSX.Element
+    errorText?: string
     //[x: string]: any allow any props
 }
 
@@ -36,7 +37,7 @@ const getPositionClass = (pos: string): string => {
 
 const FieldWrapper: React.FC<IProps> = (props) => {
 
-    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value, children } = props;
+    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value, invalid, errorText, children, onChange } = props;
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
     useEffect(() => {
@@ -66,15 +67,20 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 React.cloneElement(control, {
                     ...props,
                     onChange: (e) => {
-                        setHideLabel(e.target.value.length || document.activeElement == e.target)
+                        setHideLabel(e.target.value.length || document.activeElement == e.target);
+                        //(onChange as any)(e.target.value);
+                        onChange ? onChange(e) : null;
                     },
                     onFocus: () => {
                         setHideLabel(true)
                     },
-                    onBlur: (e:React.FocusEvent<HTMLInputElement>) => {
+                    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
                         setHideLabel(e.target.value.length > 0)
                     }
                 })
+            }
+            {invalid && errorText &&
+                <span>{errorText}</span>
             }
             {children}
         </div>

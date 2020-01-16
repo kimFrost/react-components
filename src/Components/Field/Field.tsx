@@ -11,7 +11,6 @@ export interface IProps {
     id?: string
     value?: string | Array<string>
     placeholder?: string
-    errorText?: string
     focus?: boolean
     invalid?: boolean
     disabled?: boolean
@@ -27,7 +26,7 @@ export interface IProps {
 const Field: React.FC<IProps> = (props) => {
 
     const {
-        value, type, innerRef, id, placeholder, disabled, focus, invalid, errorText, required, fullWidth,
+        value, type, innerRef, id, placeholder, disabled, focus, invalid, required, fullWidth,
         onChange, onFocus, onBlur, onClick, locked } = props;
 
     const [inputValue, setInputValue] = useState(value)
@@ -76,9 +75,6 @@ const Field: React.FC<IProps> = (props) => {
                     <div className={styles.fieldSubfields}>
                         {inputValue}
                     </div>
-                }
-                {invalid && errorText &&
-                    <span className={styles.fieldError}>{errorText}</span>
                 }
             </React.Fragment>
         )

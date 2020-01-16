@@ -11,6 +11,7 @@ export interface IProps extends IFieldProps {
     labelPos?: string | ELabelPosition;
     control?: JSX.Element;
     requiredIcon?: JSX.Element;
+    errorText?: string;
 }
 declare const FieldWrapper: React.FC<IProps>;
 export default FieldWrapper;

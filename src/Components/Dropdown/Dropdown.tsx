@@ -3,12 +3,12 @@ import styles from './Dropdown.scss'
 import Field from '../Field';
 
 
-interface IOption {
+export interface IOption {
     value: string
     label: string
 }
 
-interface IProps {
+export interface IProps {
     id?: string
     value?: any
     openIcon?: JSX.Element
@@ -17,7 +17,7 @@ interface IProps {
     searchable?: boolean
     filterable?: boolean
     fullWidth?: boolean
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void
+    onChange?: (value:any) => void
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -29,7 +29,8 @@ TODO: Keys to bind
 - End
 */
 
-const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options, openIcon, closeIcon, searchable, filterable, fullWidth }) => {
+const Dropdown: React.FC<IProps> = (props) => {
+    const { onChange, onInputChange, children, options, openIcon, closeIcon, searchable, filterable, fullWidth } = props;
 
     const [hasFocus, setHasFocus] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -46,10 +47,6 @@ const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options
     }) : [] : (options ? options : [])
 
     useEffect(() => {
-
-    }, [options, searchText])
-
-    useEffect(() => {
         if (hasFocus) {
             window.addEventListener('keydown', handleUserKeyPress);
         }
@@ -57,15 +54,6 @@ const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options
             window.removeEventListener('keydown', handleUserKeyPress);
         }
     }, [hasFocus, isOpen, focusedOption, filteredOptions]) // These are the required dependencies for the switch logic.
-
-    useEffect(() => {
-        /*
-        {onChange &&
-            onChange(selectedOption)
-        }
-        */
-    }, [selectedOption])
-
 
     const handleUserKeyPress = (e: KeyboardEvent) => {
         const { key } = e;
@@ -130,6 +118,9 @@ const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options
         setFocusedOption(option)
         setIsOpen(false)
         resetSearch()
+        {onChange &&
+            onChange(option)
+        }
     }
 
     const resetSearch = () => {
@@ -174,9 +165,10 @@ const Dropdown: React.FC<IProps> = ({ onChange, onInputChange, children, options
                 </div>
                 <div className={styles.dropdownList}>
                     <div className={styles.dropdownMenu}>
-                        {filteredOptions.map((option) => {
+                        {filteredOptions.map((option, index) => {
                             return (
                                 <div
+                                    key={index}
                                     className={[
                                         styles.dropdownMenuItem,
                                         (selectedOption === option ? styles.dropdownMenuItemSelected : ''),

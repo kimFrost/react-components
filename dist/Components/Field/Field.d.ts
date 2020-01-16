@@ -5,7 +5,6 @@ export interface IProps {
     id?: string;
     value?: string | Array<string>;
     placeholder?: string;
-    errorText?: string;
     focus?: boolean;
     invalid?: boolean;
     disabled?: boolean;

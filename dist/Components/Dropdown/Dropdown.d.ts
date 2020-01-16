@@ -1,9 +1,9 @@
 import React from 'react';
-interface IOption {
+export interface IOption {
     value: string;
     label: string;
 }
-interface IProps {
+export interface IProps {
     id?: string;
     value?: any;
     openIcon?: JSX.Element;
@@ -12,7 +12,7 @@ interface IProps {
     searchable?: boolean;
     filterable?: boolean;
     fullWidth?: boolean;
-    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange?: (value: any) => void;
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 declare const Dropdown: React.FC<IProps>;
