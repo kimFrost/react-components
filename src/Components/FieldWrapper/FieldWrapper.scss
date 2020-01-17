@@ -46,6 +46,15 @@
         transition: all linear 100ms;
         pointer-events: none;
     }
+    .field-wrapper__required {
+        display: inline-flex;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 1em;
+        pointer-events: none;
+    }
 }
 
 .field-wrapper--hide-label {

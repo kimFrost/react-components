@@ -3,12 +3,15 @@ import React, { useRef, useEffect } from 'react';
 import styles from './Checkbox.scss'
 
 export interface IProps {
+    id?: string
     disabled?: boolean
     checked?: boolean
     invalid?: boolean
     invalidText?: string
     icon?: JSX.Element
     checkedIcon?: JSX.Element
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+
     //control?: any
 }
 /*
@@ -19,7 +22,7 @@ export interface IProps {
 */
 
 
-const Checkbox: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, icon, checkedIcon }) => {
+const Checkbox: React.FC<IProps> = ({ id, disabled, checked, invalid, invalidText, icon, checkedIcon, onChange }) => {
     const ref = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
@@ -36,7 +39,15 @@ const Checkbox: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, i
     return (
         <div className={styles.checkbox}>
             <div className={styles.checkboxUiContainer}>
-                <input type="checkbox" ref={ref} className={styles.checkboxInput} disabled={disabled} checked={checked} />
+                <input
+                    type="checkbox"
+                    ref={ref}
+                    className={styles.checkboxInput}
+                    id={id}
+                    disabled={disabled}
+                    checked={checked}
+                    onChange={onChange}
+                />
                 <div className={styles.checkboxUi}>
                     {checkedIcon ?
                         React.cloneElement(checkedIcon)

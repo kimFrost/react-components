@@ -56,7 +56,7 @@ const FieldWrapper: React.FC<IProps> = (props) => {
             {label &&
                 <label className={styles.fieldWrapperLabel} htmlFor={id}>
                     {label}
-                    {required && requiredIcon &&
+                    {required && requiredIcon && labelPos !== ELabelPosition.INSIDE &&
                         <span className={styles.fieldWrapperRequired}>
                             {React.cloneElement(requiredIcon)}
                         </span>
@@ -68,7 +68,6 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                     ...props,
                     onChange: (e) => {
                         setHideLabel(e.target.value.length || document.activeElement == e.target);
-                        //(onChange as any)(e.target.value);
                         onChange ? onChange(e) : null;
                     },
                     onFocus: () => {
@@ -78,6 +77,11 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                         setHideLabel(e.target.value.length > 0)
                     }
                 })
+            }
+            {required && requiredIcon && labelPos === ELabelPosition.INSIDE &&
+                <span className={styles.fieldWrapperRequired}>
+                    {React.cloneElement(requiredIcon)}
+                </span>
             }
             {invalid && errorText &&
                 <span>{errorText}</span>

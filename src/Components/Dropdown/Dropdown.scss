@@ -37,6 +37,22 @@ $dropdown-option-selected-color: green !default;
     border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
     overflow-y: auto;
     max-height: 0;
+
+    /*
+    &::-webkit-scrollbar {
+        width: 11px;
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: blue;
+        border-top: 10px solid rgba(white, 0);
+        border-bottom: 10px solid rgba(white, 0.1);
+        border-right: 10px solid rgba(white, 0.1);
+    }
+    */
 }
 
 .dropdown__menu-item {
