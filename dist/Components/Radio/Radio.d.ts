@@ -7,6 +7,7 @@ interface IProps {
     value?: string;
     name?: string;
     id?: string;
+    onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 declare const Radio: React.FC<IProps>;
 export default Radio;

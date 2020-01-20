@@ -10,10 +10,11 @@ interface IProps {
     invalidText?: string
     value?: string
     name?: string
-    id?: string
+    id?: string,
+    onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
 }
 
-const Radio: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, value, name, id }) => {
+const Radio: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, value, name, id, onClick }) => {
     const ref = useRef<HTMLInputElement>(null)
 
     const radioGroup = useContext(RadioGroupContext)
@@ -36,7 +37,17 @@ const Radio: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, valu
     return (
         <div className={styles.radio}>
             <div className={styles.radioUiContainer}>
-                <input type="radio" ref={ref} id={id} value={value} name={name} className={styles.radioInput} disabled={disabled} checked={checked} />
+                <input
+                    type="radio"
+                    ref={ref}
+                    id={id}
+                    value={value}
+                    name={name}
+                    className={styles.radioInput}
+                    disabled={disabled}
+                    checked={checked}
+                    onClick={onClick}
+                />
                 <div className={styles.radioUi}></div>
             </div>
             {invalid && invalidText &&

@@ -2,5 +2,9 @@
 .radio-group {
     display: inline-flex;
     flex-direction: row;
+    margin: -10px;
+    & > * {
+        margin: 10px;
+    }
 }
 

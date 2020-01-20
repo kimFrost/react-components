@@ -22,11 +22,17 @@
 .field-wrapper--label-left {
     flex-direction: row;
     align-items: center;
+    .field-wrapper__label {
+        margin-right: 0.5em;
+    }
 }
 
 .field-wrapper--label-right {
     flex-direction: row-reverse;
     align-items: center;
+    .field-wrapper__label {
+        margin-left: 0.5em;
+    }
 }
 
 .field-wrapper--label-top {
@@ -43,6 +49,7 @@
         margin: 0;
         transform-origin: 0 0;
         transform: translate(0, 50%) scale(1);
+        //transform:  translate(0, calc(var(--field-height) / 2 - 0.5em)) scale(1);
         transition: all linear 100ms;
         pointer-events: none;
     }
