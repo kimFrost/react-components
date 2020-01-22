@@ -17,7 +17,8 @@ export interface IProps {
     searchable?: boolean
     filterable?: boolean
     fullWidth?: boolean
-    onChange?: (value:any) => void
+    noResultsText?: string
+    onChange?: (value: any) => void
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -30,7 +31,17 @@ TODO: Keys to bind
 */
 
 const Dropdown: React.FC<IProps> = (props) => {
-    const { onChange, onInputChange, children, options, openIcon, closeIcon, searchable, filterable, fullWidth } = props;
+    const {
+        onChange,
+        onInputChange,
+        options,
+        openIcon,
+        closeIcon,
+        searchable,
+        filterable,
+        fullWidth,
+        noResultsText
+    } = props;
 
     const [hasFocus, setHasFocus] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
@@ -89,17 +100,23 @@ const Dropdown: React.FC<IProps> = (props) => {
     }
 
     const handleControlClick = (e: React.MouseEvent<HTMLInputElement>) => {
+        console.log('handleControlClick', hasFocus, isOpen)
         if (hasFocus && !isOpen) {
             setIsOpen(true)
+        }
+        else if (hasFocus && isOpen && !searchable) {
+            //setIsOpen(false)
         }
     }
 
     const handleControlFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+        console.log('handleControlFocus')
         setHasFocus(true);
         setIsOpen(true);
     }
 
     const handleControlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        console.log('handleControlBlur')
         setIsOpen(false);
         setHasFocus(false);
         resetSearch()
@@ -118,7 +135,8 @@ const Dropdown: React.FC<IProps> = (props) => {
         setFocusedOption(option)
         setIsOpen(false)
         resetSearch()
-        {onChange &&
+        {
+            onChange &&
             onChange(option)
         }
     }
@@ -140,6 +158,7 @@ const Dropdown: React.FC<IProps> = (props) => {
             <div className={[
                 styles.dropdown,
                 (isOpen ? styles.dropdownIsOpen : ''),
+                (filteredOptions.length === 0 ? styles.dropdownNoResults : ''),
                 (fullWidth ? styles.dropdownFullWidth : '')
             ].join(' ')}>
                 <div className={styles.dropdownInput}>
@@ -182,8 +201,8 @@ const Dropdown: React.FC<IProps> = (props) => {
                                 >{option.label}</div>
                             )
                         })}
-                        {filteredOptions.length === 0 &&
-                            <div className={styles.dropdownMenuItem}>Ingen resultater</div>
+                        {filteredOptions.length === 0 && searchText.length > 0 && 
+                            <div className={styles.dropdownMenuItem}>{noResultsText}</div>
                         }
                     </div>
                 </div>
@@ -197,7 +216,8 @@ Dropdown.defaultProps = {
     filterable: true,
     openIcon: <span>↓</span>,
     closeIcon: <span>↑</span>,
-    fullWidth: false
+    fullWidth: false,
+    noResultsText: 'No results'
 };
 
 

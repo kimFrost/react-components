@@ -77,4 +77,5 @@ $field-focus-color: green !default;
 
 .field--locked {
     cursor: default;
+    color: transparent; // Hide caret
 }

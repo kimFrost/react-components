@@ -12,6 +12,7 @@ export interface IProps {
     searchable?: boolean;
     filterable?: boolean;
     fullWidth?: boolean;
+    noResultsText?: string;
     onChange?: (value: any) => void;
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

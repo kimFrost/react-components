@@ -12,6 +12,7 @@ export const dropdownValueContainer: string
 export const dropdownIcon: string
 export const dropdown__icon: string
 export const dropdownIsOpen: string
+export const dropdownNoResults: string
 export const dropdownMenuItemFocus: string
 export const dropdownMenuItemSelected: string
 export const dropdownFullWidth: string
@@ -33,6 +34,8 @@ interface Namespace {
 	"dropdown__icon": string,
 	"dropdownIsOpen": string,
 	"dropdown--is-open": string,
+	"dropdownNoResults": string,
+	"dropdown--no-results": string,
 	"dropdownMenuItemFocus": string,
 	"dropdown__menu-item--focus": string,
 	"dropdownMenuItemSelected": string,

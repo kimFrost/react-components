@@ -1,3 +1,13 @@
+export const field: string
+export const fieldFocus: string
+export const fieldSubfields: string
+export const field__subfields: string
+export const fieldError: string
+export const field__error: string
+export const fieldInvalid: string
+export const fieldFullWidth: string
+export const fieldHasSubfields: string
+export const fieldLocked: string
 export const fieldWrapper: string
 export const fieldWrapperLabel: string
 export const fieldWrapperRequired: string
@@ -8,6 +18,21 @@ export const fieldWrapperLabelInside: string
 export const fieldWrapperHideLabel: string
 export const fieldWrapperFullWidth: string
 interface Namespace {
+	"field": string,
+	"fieldFocus": string,
+	"field--focus": string,
+	"fieldSubfields": string,
+	"field__subfields": string,
+	"fieldError": string,
+	"field__error": string,
+	"fieldInvalid": string,
+	"field--invalid": string,
+	"fieldFullWidth": string,
+	"field--full-width": string,
+	"fieldHasSubfields": string,
+	"field--has-subfields": string,
+	"fieldLocked": string,
+	"field--locked": string,
 	"fieldWrapper": string,
 	"field-wrapper": string,
 	"fieldWrapperLabel": string,

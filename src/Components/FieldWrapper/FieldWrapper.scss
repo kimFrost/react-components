@@ -1,3 +1,4 @@
+@import "../Field/Field.scss";
 
 .field-wrapper {
     display: inline-flex;
@@ -58,8 +59,8 @@
         align-items: center;
         position: absolute;
         top: 0;
-        bottom: 0;
         right: 1em;
+        height: var(--field-height, #{$field-height});
         pointer-events: none;
     }
 }

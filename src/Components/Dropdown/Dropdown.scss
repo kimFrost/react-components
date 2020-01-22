@@ -103,6 +103,15 @@ $dropdown-option-selected-color: green !default;
     }
 }
 
+.dropdown--no-results {
+    .dropdown__list {
+        opacity: 0;
+    }
+    .dropdown__menu {
+        max-height: 0;
+    }
+}
+
 .dropdown__menu-item--focus {
     background-color: var(--dropdown-option-focus-background-color, #{$dropdown-option-focus-background-color});
 }
