@@ -7,9 +7,15 @@ interface IProps {
 
 const ThemeProvider: React.FC<IProps> = ({ theme, children }) => {
     return (
-        <ThemeProviderComp theme={theme}>
-            {children}
-        </ThemeProviderComp>
+        <React.Fragment>
+            {typeof theme === 'string' ?
+                <div>{children}</div>
+                :
+                <ThemeProviderComp theme={theme}>
+                    {children}
+                </ThemeProviderComp>
+            }
+        </React.Fragment>
     )
 }
 

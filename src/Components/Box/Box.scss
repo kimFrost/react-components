@@ -1,7 +1,12 @@
 
+$box_text-color: transparent !default;
+$box_background-color: inherit !default;
+
 .box {
     display: block;
     padding: 2em;
+    background-color: var(--box-background-color, #{$box_background-color});
+    color: var(--box-text-color, #{$box_text-color});
 }
 
 .box--light {

@@ -18,8 +18,7 @@ enum EColor {
 
 interface IProps {
     padding?: ESizes
-    color?: EColor | string,
-    className?: string
+    color?: EColor | string
 }
 
 const getColorClass = (color: EColor): string => {
@@ -31,12 +30,11 @@ const getColorClass = (color: EColor): string => {
     }
 }
 
-const Box: React.FC<IProps> = ({ children, color, className }) => {
+const Box: React.FC<IProps> = ({ children, color }) => {
     return (
         <div className={[
             styles.box,
-            getColorClass(color as EColor),
-            className
+            getColorClass(color as EColor)
         ].join(' ')}>
             {children}
         </div>
@@ -47,8 +45,9 @@ Box.defaultProps = {
     color: EColor.NONE
 }
 
-const StyledBox = styled(Box)`
-    background-color: ${props => props.theme.primaryColor};
-`
+// const StyledBox = styled(Box)`
+//     background-color: ${props => props.theme.primaryColor};
+//     color: ${props => props.theme.secondaryColor};
+// `
 
-export default StyledBox
+export default Box
