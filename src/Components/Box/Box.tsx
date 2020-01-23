@@ -1,6 +1,7 @@
 
 import React from 'react';
 import styles from './Box.scss'
+import styled from 'styled-components';
 
 enum ESizes {
     SM,
@@ -17,7 +18,8 @@ enum EColor {
 
 interface IProps {
     padding?: ESizes
-    color?: EColor | string
+    color?: EColor | string,
+    className?: string
 }
 
 const getColorClass = (color: EColor): string => {
@@ -29,10 +31,13 @@ const getColorClass = (color: EColor): string => {
     }
 }
 
-const Box: React.FC<IProps> = ({ children, color }) => {
-
+const Box: React.FC<IProps> = ({ children, color, className }) => {
     return (
-        <div className={styles.box + ` ${getColorClass(color as EColor)}`}>
+        <div className={[
+            styles.box,
+            getColorClass(color as EColor),
+            className
+        ].join(' ')}>
             {children}
         </div>
     )
@@ -42,4 +47,8 @@ Box.defaultProps = {
     color: EColor.NONE
 }
 
-export default Box
+const StyledBox = styled(Box)`
+    background-color: ${props => props.theme.primaryColor};
+`
+
+export default StyledBox

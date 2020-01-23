@@ -7,7 +7,8 @@ import Tooltip from './Components/Tooltip/Tooltip';
 import Container from './Components/Container/Container';
 import Box from './Components/Box/Box';
 import RadioGroup from './Components/RadioGroup/RadioGroup';
-import Dropdown from './Components/Dropdown/index';
+import Dropdown from './Components/Dropdown/';
+import ThemeProvider from './Components/ThemeProvider/';
 
 //export const Greeter = (name: string) => `Hello ${name}`;
 
@@ -21,5 +22,6 @@ export {
     Tooltip,
     Container,
     Box,
-    Dropdown
+    Dropdown,
+    ThemeProvider
 }
