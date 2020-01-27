@@ -49,6 +49,7 @@ const Dropdown: React.FC<IProps> = (props) => {
     const [focusedOption, setFocusedOption] = useState<IOption>()
     const [selectedOption, setSelectedOption] = useState<IOption>()
     const controlRef = createRef<HTMLInputElement>()
+    const scrollContainerRef = createRef<HTMLDivElement>()
 
     const filteredOptions = filterable ? options ? options.filter(option => {
         if (searchText.length) {
@@ -56,6 +57,11 @@ const Dropdown: React.FC<IProps> = (props) => {
         }
         else return true
     }) : [] : (options ? options : [])
+
+    const optionRefs = filteredOptions.reduce((refs, option) => {
+        refs[option.label] = React.createRef()
+        return refs
+    }, {})
 
     useEffect(() => {
         if (hasFocus) {
@@ -94,29 +100,30 @@ const Dropdown: React.FC<IProps> = (props) => {
     const switchOptionFocus = (direction: number) => {
         const currentIndex = focusedOption ? filteredOptions.indexOf(focusedOption) : -1;
         const nextIndex = Math.max(0, Math.min(currentIndex + direction, filteredOptions.length - 1));
-        setFocusedOption(() => {
-            return filteredOptions[nextIndex]
-        });
+        const nextOption = filteredOptions[nextIndex];
+        if (nextOption && optionRefs[nextOption.label] && optionRefs[nextOption.label].current) {
+            optionRefs[nextOption.label].current.scrollIntoView({
+                block: 'nearest'
+            })
+        }
+        setFocusedOption(nextOption);
     }
 
     const handleControlClick = (e: React.MouseEvent<HTMLInputElement>) => {
-        console.log('handleControlClick', hasFocus, isOpen)
         if (hasFocus && !isOpen) {
             setIsOpen(true)
         }
         else if (hasFocus && isOpen && !searchable) {
-            //setIsOpen(false)
+            setIsOpen(false)
         }
     }
 
     const handleControlFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-        console.log('handleControlFocus')
         setHasFocus(true);
-        setIsOpen(true);
+        //setIsOpen(true); // click will handle open/close
     }
 
     const handleControlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        console.log('handleControlBlur')
         setIsOpen(false);
         setHasFocus(false);
         resetSearch()
@@ -135,8 +142,7 @@ const Dropdown: React.FC<IProps> = (props) => {
         setFocusedOption(option)
         setIsOpen(false)
         resetSearch()
-        {
-            onChange &&
+        if (onChange) {
             onChange(option)
         }
     }
@@ -183,11 +189,12 @@ const Dropdown: React.FC<IProps> = (props) => {
                     </div>
                 </div>
                 <div className={styles.dropdownList}>
-                    <div className={styles.dropdownMenu}>
+                    <div ref={scrollContainerRef} className={styles.dropdownMenu}>
                         {filteredOptions.map((option, index) => {
                             return (
                                 <div
                                     key={index}
+                                    ref={optionRefs[option.label]}
                                     className={[
                                         styles.dropdownMenuItem,
                                         (selectedOption === option ? styles.dropdownMenuItemSelected : ''),
@@ -201,7 +208,7 @@ const Dropdown: React.FC<IProps> = (props) => {
                                 >{option.label}</div>
                             )
                         })}
-                        {filteredOptions.length === 0 && searchText.length > 0 && 
+                        {filteredOptions.length === 0 && searchText.length > 0 &&
                             <div className={styles.dropdownMenuItem}>{noResultsText}</div>
                         }
                     </div>

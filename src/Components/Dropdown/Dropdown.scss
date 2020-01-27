@@ -24,35 +24,34 @@ $dropdown-option-selected-color: green !default;
     margin-top: 3px;
     opacity: 0;
     z-index: 1;
-    //transition: all 500ms ease;
+    box-sizing: border-box;
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 1px solid;
+    background-color: var(--dropdown-list-background-color, #{$dropdown-list-background-color});
+    border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
 }
 
 .dropdown__menu {
     display: flex;
     flex-direction: column;
-    border-radius: 1em;
-    padding: 0.5em 1em;
-    border: 1px solid;
-    background-color: var(--dropdown-list-background-color, #{$dropdown-list-background-color});
-    border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
+    padding: 0 0.5em;
     overflow-y: auto;
     max-height: 0;
-
-    /*
+    
     &::-webkit-scrollbar {
-        width: 11px;
+        width: 8px;
         background: transparent;
     }
     &::-webkit-scrollbar-track {
-        background: transparent;
+        background: lightgrey;
+        border-radius: 4px;
     }
     &::-webkit-scrollbar-thumb {
-        background: blue;
-        border-top: 10px solid rgba(white, 0);
-        border-bottom: 10px solid rgba(white, 0.1);
-        border-right: 10px solid rgba(white, 0.1);
+        background: grey;
+        border-radius: 4px;
     }
-    */
+    
 }
 
 .dropdown__menu-item {
