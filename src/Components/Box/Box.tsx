@@ -19,6 +19,7 @@ enum EColor {
 interface IProps {
     padding?: ESizes
     color?: EColor | string
+    className?: string
 }
 
 const getColorClass = (color: EColor): string => {
@@ -30,11 +31,12 @@ const getColorClass = (color: EColor): string => {
     }
 }
 
-const Box: React.FC<IProps> = ({ children, color }) => {
+const Box: React.FC<IProps> = ({ children, color, className}) => {
     return (
         <div className={[
             styles.box,
-            getColorClass(color as EColor)
+            getColorClass(color as EColor),
+            className
         ].join(' ')}>
             {children}
         </div>

@@ -32,6 +32,7 @@ TODO: Keys to bind
 
 const Dropdown: React.FC<IProps> = (props) => {
     const {
+        value,
         onChange,
         onInputChange,
         options,
@@ -47,7 +48,8 @@ const Dropdown: React.FC<IProps> = (props) => {
     const [isOpen, setIsOpen] = useState(false)
     const [searchText, setSearchText] = useState('')
     const [focusedOption, setFocusedOption] = useState<IOption>()
-    const [selectedOption, setSelectedOption] = useState<IOption>()
+    const defaultOption = options ? options.find((option) => option.label === value) : null;
+    const [selectedOption, setSelectedOption] = useState<IOption | null | undefined>(defaultOption)
     const controlRef = createRef<HTMLInputElement>()
     const scrollContainerRef = createRef<HTMLDivElement>()
 

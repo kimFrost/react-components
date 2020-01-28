@@ -13,6 +13,7 @@ declare enum EColor {
 interface IProps {
     padding?: ESizes;
     color?: EColor | string;
+    className?: string;
 }
 declare const Box: React.FC<IProps>;
 export default Box;
