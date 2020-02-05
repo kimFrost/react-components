@@ -45,7 +45,7 @@ const Checkbox: React.FC<IProps> = ({ id, disabled, checked, invalid, invalidTex
                     className={styles.checkboxInput}
                     id={id}
                     disabled={disabled}
-                    checked={checked}
+                    defaultChecked={checked}
                     onChange={onChange}
                 />
                 <div className={styles.checkboxUi}>

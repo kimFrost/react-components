@@ -45,7 +45,7 @@ const Radio: React.FC<IProps> = ({ disabled, checked, invalid, invalidText, valu
                     name={name}
                     className={styles.radioInput}
                     disabled={disabled}
-                    checked={checked}
+                    defaultChecked={checked}
                     onClick={onClick}
                 />
                 <div className={styles.radioUi}></div>
