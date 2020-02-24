@@ -20,6 +20,10 @@
     display: inline;
 }
 
+.field-wrapper__error-text {
+    color: var(--field-error-color, #{$field-error-color});
+}
+
 .field-wrapper--label-left {
     flex-direction: row;
     align-items: center;

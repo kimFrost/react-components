@@ -17,7 +17,7 @@ export interface IProps extends IFieldProps {
     control?: JSX.Element
     requiredIcon?: JSX.Element
     errorText?: string
-    //[x: string]: any allow any props
+    //[x: string]: any //allow any props
 }
 
 const getPositionClass = (pos: string): string => {
@@ -84,7 +84,7 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 </span>
             }
             {invalid && errorText &&
-                <span>{errorText}</span>
+                <span className={styles.fieldWrapperErrorText}>{errorText}</span>
             }
             {children}
         </div>

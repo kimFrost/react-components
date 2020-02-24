@@ -11,6 +11,7 @@ export const fieldLocked: string
 export const fieldWrapper: string
 export const fieldWrapperLabel: string
 export const fieldWrapperRequired: string
+export const fieldWrapperErrorText: string
 export const fieldWrapperLabelLeft: string
 export const fieldWrapperLabelRight: string
 export const fieldWrapperLabelTop: string
@@ -39,6 +40,8 @@ interface Namespace {
 	"field-wrapper__label": string,
 	"fieldWrapperRequired": string,
 	"field-wrapper__required": string,
+	"fieldWrapperErrorText": string,
+	"field-wrapper__error-text": string,
 	"fieldWrapperLabelLeft": string,
 	"field-wrapper--label-left": string,
 	"fieldWrapperLabelRight": string,
