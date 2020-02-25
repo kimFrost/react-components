@@ -55,7 +55,11 @@ const Dropdown: React.FC<IProps> = (props) => {
 
     const filteredOptions = filterable ? options ? options.filter(option => {
         if (searchText.length) {
-            return option.label.toLowerCase().includes(searchText) || (typeof option.value === 'string' ? (option.value.toLowerCase().includes(searchText)) : false)
+            const pattern = searchText.split("").map((x) => {
+                return `(?=.*${x})`
+            }).join("");
+            var regex = new RegExp(`${pattern}`, "g")
+            return option.label.toLowerCase().match(regex) || (typeof option.value === 'string' ? (option.value.toLowerCase().match(regex)) : false)
         }
         else return true
     }) : [] : (options ? options : [])

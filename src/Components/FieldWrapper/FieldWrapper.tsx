@@ -84,7 +84,9 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 </span>
             }
             {invalid && errorText &&
-                <span className={styles.fieldWrapperErrorText}>{errorText}</span>
+                <span className={styles.fieldWrapperErrorText}>
+                    {errorText}
+                </span>
             }
             {children}
         </div>
