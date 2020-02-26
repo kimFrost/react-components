@@ -53,16 +53,6 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 (fullWidth ? styles.fieldWrapperFullWidth : '')
             ].join(' ')
         }>
-            {label &&
-                <label className={styles.fieldWrapperLabel} htmlFor={id}>
-                    {label}
-                    {required && requiredIcon && labelPos !== ELabelPosition.INSIDE &&
-                        <span className={styles.fieldWrapperRequired}>
-                            {React.cloneElement(requiredIcon)}
-                        </span>
-                    }
-                </label>
-            }
             {control &&
                 React.cloneElement(control, {
                     ...props,
@@ -77,6 +67,16 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                         setHideLabel(e.target.value.length > 0)
                     }
                 })
+            }
+            {label &&
+                <label className={styles.fieldWrapperLabel} htmlFor={id}>
+                    {label}
+                    {required && requiredIcon && labelPos !== ELabelPosition.INSIDE &&
+                        <span className={styles.fieldWrapperRequired}>
+                            {React.cloneElement(requiredIcon)}
+                        </span>
+                    }
+                </label>
             }
             {required && requiredIcon && labelPos === ELabelPosition.INSIDE &&
                 <span className={styles.fieldWrapperRequired}>

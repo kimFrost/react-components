@@ -20,6 +20,8 @@ export interface IProps {
     noResultsText?: string
     onChange?: (value: any) => void
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
 /*
@@ -35,6 +37,8 @@ const Dropdown: React.FC<IProps> = (props) => {
         value,
         onChange,
         onInputChange,
+        onFocus,
+        onBlur,
         options,
         openIcon,
         closeIcon,
@@ -127,12 +131,18 @@ const Dropdown: React.FC<IProps> = (props) => {
     const handleControlFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         setHasFocus(true);
         //setIsOpen(true); // click will handle open/close
+        if (onFocus) {
+            onFocus(e)
+        }
     }
 
     const handleControlBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         setIsOpen(false);
         setHasFocus(false);
         resetSearch()
+        if (onBlur) {
+            onBlur(e)
+        }
     }
 
     const handleControlChange = (e: React.ChangeEvent<HTMLInputElement>) => {

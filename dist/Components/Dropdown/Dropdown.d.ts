@@ -15,6 +15,8 @@ export interface IProps {
     noResultsText?: string;
     onChange?: (value: any) => void;
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 declare const Dropdown: React.FC<IProps>;
 export default Dropdown;
