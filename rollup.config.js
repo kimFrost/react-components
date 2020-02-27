@@ -5,6 +5,18 @@ import { terser } from "rollup-plugin-terser";
 import postcss from 'rollup-plugin-postcss-modules';
 import resolve from "rollup-plugin-node-resolve";
 
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
+
 export default {
     input: 'src/index.ts', // our source file
     output: [
@@ -29,8 +41,10 @@ export default {
         postcss({
             extract: false,
             writeDefinitions: true,
-            modules: true,
-            use: ['sass'],
+            modules: {
+                generateScopedName: "[local]___[hash:base64:6]__" + pkg.version
+            },
+            use: ['sass']
             //extensions: ['.module.scss']
         }),
         typescript({
@@ -51,6 +65,6 @@ export default {
         // }),
         terser(), // minifies generated bundles
         //resolve(),
-       
+
     ]
 };
