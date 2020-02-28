@@ -6,17 +6,6 @@ import postcss from 'rollup-plugin-postcss-modules';
 import resolve from "rollup-plugin-node-resolve";
 
 
-function makeid(length) {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-       result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
- }
-
-
 export default {
     input: 'src/index.ts', // our source file
     output: [
