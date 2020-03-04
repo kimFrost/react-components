@@ -31,7 +31,7 @@ export default {
             extract: false,
             writeDefinitions: true,
             modules: {
-                generateScopedName: "[local]___[hash:base64:6]__" + pkg.version
+                generateScopedName: "[local]___[hash:base64:4]__" + pkg.version
             },
             use: ['sass']
             //extensions: ['.module.scss']
