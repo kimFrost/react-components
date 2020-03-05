@@ -17,6 +17,7 @@ export interface IProps {
     required?: boolean
     locked?: boolean
     fullWidth?: boolean
+    readonly?: boolean
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
@@ -27,7 +28,7 @@ const Field: React.FC<IProps> = (props) => {
 
     const {
         value, type, innerRef, id, placeholder, disabled, focus, invalid, required, fullWidth,
-        onChange, onFocus, onBlur, onClick, locked } = props;
+        onChange, onFocus, onBlur, onClick, locked, readonly } = props;
 
     const [inputValue, setInputValue] = useState(value)
 
@@ -66,6 +67,7 @@ const Field: React.FC<IProps> = (props) => {
                     placeholder={placeholder}
                     disabled={disabled}
                     required={required}
+                    readOnly={readonly}
                     onChange={handleOnChange}
                     onFocus={onFocus}
                     onBlur={onBlur}
