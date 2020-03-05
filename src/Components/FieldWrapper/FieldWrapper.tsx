@@ -57,14 +57,24 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 React.cloneElement(control, {
                     ...props,
                     onChange: (e) => {
-                        setHideLabel(e.target.value.length || document.activeElement == e.target);
+                        if (e.target) {
+                            setHideLabel(e.target.value.length || document.activeElement == e.target);
+                        }
+                        else if (typeof e === 'string') {
+                            setHideLabel(e.length > 0);
+                        }
                         onChange ? onChange(e) : null;
                     },
                     onFocus: () => {
                         setHideLabel(true)
                     },
                     onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
-                        setHideLabel(e.target.value.length > 0)
+                        if (props.value) {
+                            setHideLabel(props.value.length > 0)
+                        }
+                        else {
+                            setHideLabel(e.target.value.length > 0)
+                        }
                     }
                 })
             }
