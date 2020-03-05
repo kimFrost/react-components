@@ -70,7 +70,7 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                     },
                     onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
                         if (props.value) {
-                            setHideLabel(props.value.length > 0)
+                            setHideLabel(props.value.toString().length > 0)
                         }
                         else {
                             setHideLabel(e.target.value.length > 0)
