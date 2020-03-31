@@ -1,7 +1,6 @@
 
 import React from 'react';
 import styles from './Box.scss'
-import styled from 'styled-components';
 
 enum ESizes {
     SM,
