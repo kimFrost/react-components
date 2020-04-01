@@ -1,12 +1,5 @@
 
-$field-height: 34px !default;
-$field-font-family: sans-serif !default;
-$field-font-weight: 400 !default;
-$field-text-color: black !default;
-$field-background-color: white !default;
-$field-error-color: red !default;
-$field-error-background-color: mix(white, $field-error-color, 90) !default;
-$field-focus-color: green !default;
+@import 'Field.config';
 
 .field {
     display: inline-flex;
@@ -16,7 +9,8 @@ $field-focus-color: green !default;
     border-radius: 1em;
     min-width: 300px;
     height: var(--field-height, #{$field-height});
-    border-radius: calc(var(--field-height, #{$field-height}) / 2);
+    //border-radius: calc(var(--field-height, #{$field-height}) / 2);
+    border-radius: var(--field-border-radius, #{$field-border-radius});
     outline: none;
     margin: 0;
     padding: 0.5em 1em;

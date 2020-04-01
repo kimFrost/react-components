@@ -1,12 +1,5 @@
 
-$btn-height: 31px !default;
-$btn-font-family: sans-serif !default;
-$btn-font-weight: 400 !default;
-$btn-text-color: white !default;
-$btn-background-color: green !default;
-$btn-background-color-hover: mix(black, $btn-background-color, 30%) !default; 
-$btn-background-color-active: mix(black, $btn-background-color, 10%) !default; 
-$btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
+@import 'Button.config';
 
 .btn {
     display: inline-flex;
@@ -19,7 +12,7 @@ $btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
     min-width: 4em;
     height: var(--btn-height, #{$btn-height});
     padding: 0 2.5em;
-    border-radius: 2em;
+    border-radius: var(--btn-border-radius, #{$btn-border-radius});
     color: var(--btn-text-color, #{$btn-text-color});
     background: var(--btn-background-color, #{$btn-background-color});
     font-family: var(--btn-font-family, #{$btn-font-family});

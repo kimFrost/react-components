@@ -1,0 +1,10 @@
+
+$btn-height: 31px !default;
+$btn-font-family: sans-serif !default;
+$btn-font-weight: 400 !default;
+$btn-text-color: white !default;
+$btn-background-color: green !default;
+$btn-background-color-hover: mix(black, $btn-background-color, 30%) !default; 
+$btn-background-color-active: mix(black, $btn-background-color, 10%) !default; 
+$btn-background-color-disabled: mix(white, $btn-background-color, 50%) !default;
+$btn-border-radius: 2em !default;
