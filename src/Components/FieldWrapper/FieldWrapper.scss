@@ -22,7 +22,7 @@
 
 .field-wrapper__error-text {
     color: var(--field-error-color, #{$field-error-color});
-    margin-left: 1em;
+    margin-left: var(--field-padding, #{$field-padding});
 }
 
 .field-wrapper--label-left {
@@ -49,7 +49,10 @@
     .field-wrapper__label {
         position: absolute;
         top: 0;
-        left: 1em;
+        left: var(--field-padding, #{$field-padding});
+        font-weight: var(--field-font-weight, #{$field-font-weight});
+        font-family: var(--field-font-family, #{$field-font-family});
+        color: var(--field-text-color, #{$field-text-color});
         font-size: 1em;
         line-height: 1em;
         margin: 0;
@@ -64,7 +67,7 @@
         align-items: center;
         position: absolute;
         top: 0;
-        right: 1em;
+        right: var(--field-padding, #{$field-padding});
         height: var(--field-height, #{$field-height});
         pointer-events: none;
     }

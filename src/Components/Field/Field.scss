@@ -13,7 +13,8 @@
     border-radius: var(--field-border-radius, #{$field-border-radius});
     outline: none;
     margin: 0;
-    padding: 0.5em 1em;
+    padding-left: var(--field-padding, #{$field-padding});
+    padding-right: var(--field-padding, #{$field-padding});
     border: 1px solid grey;
     color: var(--field-text-color, #{$field-text-color});
     font-size: 1em;
@@ -39,7 +40,8 @@
     left: 0;
     top: 0;
     bottom: 0;
-    padding: 0.5em 1em;
+    padding-left: var(--field-padding, #{$field-padding});
+    padding-right: var(--field-padding, #{$field-padding});
     pointer-events: none;
 }
 
