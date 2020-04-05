@@ -9,6 +9,7 @@ export interface IProps {
     openIcon?: JSX.Element;
     closeIcon?: JSX.Element;
     options?: Array<IOption>;
+    invalid?: boolean;
     searchable?: boolean;
     filterable?: boolean;
     fullWidth?: boolean;

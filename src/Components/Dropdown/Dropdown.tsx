@@ -14,6 +14,7 @@ export interface IProps {
     openIcon?: JSX.Element
     closeIcon?: JSX.Element
     options?: Array<IOption>
+    invalid?: boolean
     searchable?: boolean
     filterable?: boolean
     fullWidth?: boolean
@@ -25,7 +26,9 @@ export interface IProps {
 }
 
 /*
-TODO: Keys to bind
+TODO: 
+IProps extend Field props instead?
+Keys to bind
 - PageUp
 - PageDown
 - Home
@@ -42,6 +45,7 @@ const Dropdown: React.FC<IProps> = (props) => {
         options,
         openIcon,
         closeIcon,
+        invalid,
         searchable,
         filterable,
         fullWidth,
@@ -185,6 +189,7 @@ const Dropdown: React.FC<IProps> = (props) => {
             ].join(' ')}>
                 <div className={styles.dropdownInput}>
                     <Field
+                        invalid={invalid}
                         innerRef={controlRef}
                         onChange={handleControlChange}
                         onFocus={handleControlFocus}

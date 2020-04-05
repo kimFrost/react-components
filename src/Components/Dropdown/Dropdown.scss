@@ -1,3 +1,4 @@
+@import "../Field/Field.config.scss";
 
 $dropdown-list-border-color: green !default;
 $dropdown-list-background-color: white !default;
@@ -10,12 +11,10 @@ $dropdown-option-selected-color: green !default;
     position: relative;
 }
 
-
 .dropdown__input {
     cursor: pointer;
     width: inherit;
 }
-
 
 .dropdown__list {
     position: absolute;
@@ -26,7 +25,7 @@ $dropdown-option-selected-color: green !default;
     z-index: 1;
     box-sizing: border-box;
     padding: 0.5em;
-    border-radius: 1em;
+    border-radius: var(--field-border-radius, #{$field-border-radius});
     border: 1px solid;
     background-color: var(--dropdown-list-background-color, #{$dropdown-list-background-color});
     border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
