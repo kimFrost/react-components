@@ -50,7 +50,8 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 styles.fieldWrapper,
                 getPositionClass(labelPos as ELabelPosition),
                 (hideLabel ? styles.fieldWrapperHideLabel : ''),
-                (fullWidth ? styles.fieldWrapperFullWidth : '')
+                (fullWidth ? styles.fieldWrapperFullWidth : ''),
+                ((invalid && errorText) ? styles.fieldWrapperShowError : '')
             ].join(' ')
         }>
             {control &&
@@ -93,11 +94,9 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                     {React.cloneElement(requiredIcon)}
                 </span>
             }
-            {invalid && errorText &&
-                <span className={styles.fieldWrapperErrorText}>
-                    {errorText}
-                </span>
-            }
+            <span className={styles.fieldWrapperErrorText}>
+                {errorText}
+            </span>
             {children}
         </div>
     )

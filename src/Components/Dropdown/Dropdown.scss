@@ -22,7 +22,7 @@ $dropdown-option-selected-color: green !default;
     width: 100%;
     margin-top: 3px;
     opacity: 0;
-    z-index: 1;
+    z-index: 10;
     box-sizing: border-box;
     padding: 0.5em;
     border-radius: var(--field-border-radius, #{$field-border-radius});
