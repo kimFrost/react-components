@@ -2,76 +2,101 @@
 @import 'Field.config';
 
 .field {
-    display: inline-flex;
-    align-items: center;
-    box-sizing: border-box;    
-    background: var(--field-background-color, #{$field-background-color});
-    border-radius: 1em;
-    min-width: 300px;
-    height: var(--field-height, #{$field-height});
-    //border-radius: calc(var(--field-height, #{$field-height}) / 2);
-    border-radius: var(--field-border-radius, #{$field-border-radius});
-    outline: none;
-    margin: 0;
-    padding-left: var(--field-padding, #{$field-padding});
-    padding-right: var(--field-padding, #{$field-padding});
-    border: 1px solid grey;
-    color: var(--field-text-color, #{$field-text-color});
-    font-size: 1em;
-    font-weight: var(--field-font-weight, #{$field-font-weight});
-    font-family: var(--field-font-family, #{$field-font-family});
-    transition: border-color 300ms ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;    
+    background: var(--field-background-color, #{$field-background-color}) !important;
+    border-radius: 1em !important;
+    min-width: 300px !important;
+    height: var(--field-height, #{$field-height}) !important;
+    //border-radius: calc(var(--field-height, #{$field-height}) / 2) !important;
+    border-radius: var(--field-border-radius, #{$field-border-radius}) !important;
+    outline: none !important;
+    margin: 0 !important;
+    padding-left: var(--field-padding, #{$field-padding}) !important;
+    padding-right: var(--field-padding, #{$field-padding}) !important;
+    border: 1px solid grey !important;
+    color: var(--field-text-color, #{$field-text-color}) !important;
+    font-size: var(--field-font-size, #{$field-font-size}) !important;
+    font-weight: var(--field-font-weight, #{$field-font-weight}) !important;
+    font-family: var(--field-font-family, #{$field-font-family}) !important;
+    transition: border-color 300ms ease !important;
 }
 
 .field:focus,
 .field--focus {
-    border-color: var(--field-focus-color, #{$field-focus-color});
+    border-color: var(--field-focus-color, #{$field-focus-color}) !important;
 }
 
 .field:disabled {
-    background-color: lightgrey;
-    border-color: lightgrey;
+    background-color: lightgrey !important;
+    border-color: lightgrey !important;
 }
 
 .field__subfields {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding-left: var(--field-padding, #{$field-padding});
-    padding-right: var(--field-padding, #{$field-padding});
-    pointer-events: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    padding-left: var(--field-padding, #{$field-padding}) !important;
+    padding-right: var(--field-padding, #{$field-padding}) !important;
+    pointer-events: none !important;
 }
 
 .field__error {
-    display: none;
-    margin-top: 0.5em;
-    font-size: 0.95em;
-    font-family: var(--field-font-family, #{$field-font-family});
-    color: var(--field-error-color, #{$field-error-color});
+    display: none !important;
+    margin-top: 0.5em !important;
+    font-size: 0.95em !important;
+    font-family: var(--field-font-family, #{$field-font-family}) !important;
+    color: var(--field-error-color, #{$field-error-color}) !important;
 }
 
 .field--invalid {
-    color: var(--field-error-color, #{$field-error-color});
-    border-color: var(--field-error-color, #{$field-error-color});
-    background-color: var(--field-error-background-color, #{$field-error-background-color});
+    color: var(--field-error-color, #{$field-error-color}) !important;
+    border-color: var(--field-error-color, #{$field-error-color}) !important;
+    background-color: var(--field-error-background-color, #{$field-error-background-color}) !important;
     & + .field__error {
-        display: block;
+        display: block !important;
     }
 }
 
 .field--full-width {
-    min-width: 100%;
+    min-width: 100% !important;
+    // @at-root input#{&} {
+    //     min-width: 100% !important;
+    // }
 }
 
 .field--has-subfields {
-    //color: transparent;
-    opacity: 1; // just so it will compile
+    //color: transparent !important;
+    opacity: 1 !important; // just so it will compile
 }
 
 .field--locked {
-    cursor: default;
-    color: transparent; // Hide caret
+    cursor: default !important;
+    color: transparent !important; // Hide caret
 }
+
+// overrides for input
+// input {
+//     &.field {
+//         @extend .field;
+//     }
+//     &:focus {
+//         @extend .field:focus;
+//     }
+//     &:disabled {
+//         @extend .field:disabled;
+//     }
+//     &.field--invalid {
+//         @extend .field--invalid;
+//     }
+//     &.field--full-width {
+//         @extend .field--full-width;
+//     }
+//     &.field--locked {
+//         @extend .field--locked;
+//     }
+// }

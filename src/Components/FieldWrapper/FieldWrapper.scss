@@ -18,6 +18,7 @@
 
 .field-wrapper__required {
     display: inline;
+    font-size: var(--field-font-size, #{$field-font-size});
 }
 
 .field-wrapper__error-text {
@@ -82,7 +83,7 @@
         font-weight: var(--field-font-weight, #{$field-font-weight});
         font-family: var(--field-font-family, #{$field-font-family});
         color: var(--field-text-color, #{$field-text-color});
-        font-size: 1em;
+        font-size: var(--field-font-size, #{$field-font-size});
         line-height: 1em;
         margin: 0;
         transform-origin: 0 0;

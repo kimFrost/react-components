@@ -9,6 +9,7 @@ $dropdown-option-selected-color: green !default;
     display: inline-flex;
     align-items: center;
     position: relative;
+    font-size: var(--field-font-size, #{$field-font-size});
 }
 
 .dropdown__input {
@@ -76,7 +77,7 @@ $dropdown-option-selected-color: green !default;
     top: 0;
     bottom: 0;
     box-sizing: border-box;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.5em;
     pointer-events: none;
 }
 
