@@ -6,6 +6,7 @@ export const fieldError: string
 export const field__error: string
 export const fieldInvalid: string
 export const fieldFullWidth: string
+export const fieldMultiLine: string
 export const fieldHasSubfields: string
 export const fieldLocked: string
 interface Namespace {
@@ -20,6 +21,8 @@ interface Namespace {
 	"field--invalid": string,
 	"fieldFullWidth": string,
 	"field--full-width": string,
+	"fieldMultiLine": string,
+	"field--multi-line": string,
 	"fieldHasSubfields": string,
 	"field--has-subfields": string,
 	"fieldLocked": string,

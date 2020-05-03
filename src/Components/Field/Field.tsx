@@ -1,8 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import styles from './Field.scss'
-import Checkbox from '../Checkbox';
-
 
 
 export interface IProps {
@@ -11,6 +9,7 @@ export interface IProps {
     id?: string
     value?: string | Array<string>
     placeholder?: string
+    multiLine?: boolean
     focus?: boolean
     invalid?: boolean
     disabled?: boolean
@@ -27,7 +26,7 @@ export interface IProps {
 const Field: React.FC<IProps> = (props) => {
 
     const {
-        value, type, innerRef, id, placeholder, disabled, focus, invalid, required, fullWidth,
+        value, type, innerRef, id, placeholder, multiLine, disabled, focus, invalid, required, fullWidth,
         onChange, onFocus, onBlur, onClick, locked, readonly } = props;
 
     const [inputValue, setInputValue] = useState(value)
@@ -41,12 +40,42 @@ const Field: React.FC<IProps> = (props) => {
         setInputValue(e.target.value)
         {
             onChange &&
-            onChange(e)
+                onChange(e)
         }
     }
 
-    if (type == "checkbox") {
-        return <Checkbox {...props} />
+    if (multiLine) {
+        return (
+            <React.Fragment>
+                <textarea
+                    className={[
+                        styles.field,
+                        (focus ? styles.fieldFocus : ''),
+                        (invalid ? styles.fieldInvalid : ''),
+                        (invalid ? styles.fieldInvalid : ''),
+                        (multiLine ? styles.fieldMultiLine : ''),
+                        (Array.isArray(inputValue) ? styles.fieldHasSubfields : ''),
+                        (locked ? styles.fieldLocked : '')
+                    ].join(' ')}
+                    id={id}
+                    ref={innerRef as any}
+                    value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                    required={required}
+                    readOnly={readonly}
+                    onChange={handleOnChange as any}
+                    onFocus={onFocus as any}
+                    onBlur={onBlur as any}
+                    onClick={onClick as any}
+                ></textarea>
+                {Array.isArray(inputValue) && inputValue.length &&
+                    <div className={styles.fieldSubfields}>
+                        {inputValue}
+                    </div>
+                }
+            </React.Fragment>
+        )
     }
     else {
         return (

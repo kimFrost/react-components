@@ -1,5 +1,6 @@
 import Button from './Components/Button';
 import Field from './Components/Field';
+import TextField from './Components/TextField';
 import FieldWrapper from './Components/FieldWrapper';
 import Checkbox from './Components/Checkbox';
 import Radio from './Components/Radio/Radio';
@@ -15,6 +16,7 @@ import ThemeProvider from './Components/ThemeProvider/';
 export { 
     Button,
     Field,
+    TextField,
     FieldWrapper,
     Checkbox,
     Radio,
