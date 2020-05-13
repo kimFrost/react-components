@@ -145,6 +145,9 @@ const Dropdown: React.FC<IProps> = (props) => {
         setHasFocus(false);
         resetSearch()
         if (onBlur) {
+            if (selectedOption) {
+                e.target.value = selectedOption.label;
+            }
             onBlur(e)
         }
     }

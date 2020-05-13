@@ -16,6 +16,7 @@ export interface IProps extends IFieldProps {
     labelPos?: string | ELabelPosition
     control?: JSX.Element
     requiredIcon?: JSX.Element
+    icon?: JSX.Element
     errorText?: string
     //[x: string]: any //allow any props
 }
@@ -37,7 +38,21 @@ const getPositionClass = (pos: string): string => {
 
 const FieldWrapper: React.FC<IProps> = (props) => {
 
-    const { id, label, labelPos, control, required, requiredIcon, fullWidth, value, invalid, errorText, children, onChange } = props;
+    const {
+        id,
+        label,
+        labelPos,
+        control,
+        required,
+        requiredIcon,
+        icon,
+        fullWidth,
+        value,
+        invalid,
+        errorText,
+        children,
+        onChange
+    } = props;
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
     useEffect(() => {
@@ -65,6 +80,9 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                             setHideLabel(e.length > 0);
                         }
                         onChange ? onChange(e) : null;
+                        if (typeof control.props['onChange'] === 'function') {
+                            control.props['onChange'](e)
+                        }
                     },
                     onFocus: () => {
                         setHideLabel(true)
@@ -92,6 +110,11 @@ const FieldWrapper: React.FC<IProps> = (props) => {
             {required && requiredIcon && labelPos === ELabelPosition.INSIDE &&
                 <span className={styles.fieldWrapperRequired}>
                     {React.cloneElement(requiredIcon)}
+                </span>
+            }
+            {icon &&
+                <span className={styles.fieldWrapperRequired}>
+                    {React.cloneElement(icon)}
                 </span>
             }
             <span className={styles.fieldWrapperErrorText}>
