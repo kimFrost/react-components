@@ -56,7 +56,9 @@ const FieldWrapper: React.FC<IProps> = (props) => {
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
     useEffect(() => {
-
+        if (typeof value === 'string') {
+            setHideLabel(value.length > 0);
+        }
     }, [value])
 
     return (

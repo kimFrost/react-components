@@ -44,8 +44,9 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "polished": "^3.4.2",
     "styled-components": "^4.4.1",
-    "polished": "^3.4.2"
+    "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
     "react": "^16.8.6",

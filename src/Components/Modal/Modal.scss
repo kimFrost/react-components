@@ -24,10 +24,43 @@
 
 .modal__content {
     background: white;
-    width: 20em;
-    height: 20em;
+    width: 30em;
+    //height: 30em;
+    padding: 1em;
+    border-radius: 0.5em;
 }
+
+
+/*** ANIMATION CLASSES ***/
 
 .modal--show {
     display: flex;
+    .modal__background {
+        opacity: 0;
+    }
+    .modal__content {
+        transform: scale(0);
+    }
+}
+
+.modal--show-active {
+    display: flex;
+    .modal__background {
+        opacity: 1;
+        transition: opacity 500ms;
+    }
+    .modal__content {
+        transform: scale(1);
+        transition: transform 500ms;
+    }
+}
+
+.modal--show-done {
+    display: flex;
+    .modal__background {
+        opacity: 1;
+    }
+    .modal__content {
+        transform: scale(1);
+    }
 }
