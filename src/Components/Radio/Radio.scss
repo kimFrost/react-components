@@ -32,11 +32,7 @@ $radio-error-background-color: mix(white, $radio-error-border-color, 90) !defaul
     border: none;
     opacity: 0;
     cursor: pointer;
-    // &:focus {
-    //     & ~ .radio__ui {
-    //         outline: 2px solid red;
-    //     }
-    // }
+   
     &:disabled {
         & ~ .radio__ui {
             background: lightgrey;
@@ -61,6 +57,11 @@ $radio-error-background-color: mix(white, $radio-error-border-color, 90) !defaul
         & ~ .radio__ui {
             background-color: var(--radio-error-background-color, #{$radio-error-background-color});
             border-color: var(--radio-error-border-color, #{$radio-error-border-color});
+        }
+    }
+    &:focus {
+        & ~ .radio__ui {
+            border-color: green;
         }
     }
 }
