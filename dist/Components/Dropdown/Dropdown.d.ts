@@ -14,6 +14,7 @@ export interface IProps {
     filterable?: boolean;
     fullWidth?: boolean;
     noResultsText?: string;
+    showIcons?: boolean;
     onChange?: (value: any) => void;
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;

@@ -53,11 +53,15 @@ const FieldWrapper: React.FC<IProps> = (props) => {
         children,
         onChange
     } = props;
+
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
     useEffect(() => {
         if (typeof value === 'string') {
-            setHideLabel(value.length > 0);
+            setHideLabel(value.length > 0)
+        }
+        if (!value) {
+            setHideLabel(false)
         }
     }, [value])
 
@@ -109,16 +113,14 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                     }
                 </label>
             }
-            {required && requiredIcon && labelPos === ELabelPosition.INSIDE &&
-                <span className={styles.fieldWrapperRequired}>
-                    {React.cloneElement(requiredIcon)}
-                </span>
-            }
-            {icon &&
-                <span className={styles.fieldWrapperRequired}>
-                    {React.cloneElement(icon)}
-                </span>
-            }
+            <div className={styles.fieldWrapperIcons}>
+                {icon &&
+                    React.cloneElement(icon)
+                }
+                {required && requiredIcon && labelPos === ELabelPosition.INSIDE &&
+                    React.cloneElement(requiredIcon)
+                }
+            </div>
             <span className={styles.fieldWrapperErrorText}>
                 {errorText}
             </span>

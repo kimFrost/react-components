@@ -21,6 +21,17 @@
     font-size: var(--field-font-size, #{$field-font-size});
 }
 
+.field-wrapper__icons {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: var(--field-padding, #{$field-padding});
+    height: var(--field-height, #{$field-height});
+    pointer-events: none;
+}
+
 .field-wrapper__error-text {
     display: block;
     position: absolute;

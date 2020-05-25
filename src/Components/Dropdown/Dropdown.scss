@@ -30,6 +30,7 @@ $dropdown-option-selected-color: green !default;
     border: 1px solid;
     background-color: var(--dropdown-list-background-color, #{$dropdown-list-background-color});
     border-color: var(--dropdown-list-border-color, #{$dropdown-list-border-color});
+    pointer-events: none;
 }
 
 .dropdown__menu {
@@ -96,6 +97,7 @@ $dropdown-option-selected-color: green !default;
 .dropdown--is-open {
     .dropdown__list {
         opacity: 1;
+        pointer-events: auto;
     }
     .dropdown__menu {
         max-height: 300px;

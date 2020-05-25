@@ -19,6 +19,7 @@ export interface IProps {
     filterable?: boolean
     fullWidth?: boolean
     noResultsText?: string
+    showIcons?: boolean
     onChange?: (value: any) => void
     onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -49,7 +50,8 @@ const Dropdown: React.FC<IProps> = (props) => {
         searchable,
         filterable,
         fullWidth,
-        noResultsText
+        noResultsText,
+        showIcons
     } = props;
 
     const [hasFocus, setHasFocus] = useState(false)
@@ -204,13 +206,15 @@ const Dropdown: React.FC<IProps> = (props) => {
                     <div className={styles.dropdownValueContainer}>{searchText.length === 0 &&
                         selectedOption ? selectedOption.label : ''
                     }</div>
-                    <div className={styles.dropdownIcon}>
-                        {isOpen ?
-                            closeIcon ? React.cloneElement(closeIcon) : null
-                            :
-                            openIcon ? React.cloneElement(openIcon) : null
-                        }
-                    </div>
+                    {showIcons &&
+                        <div className={styles.dropdownIcon}>
+                            {isOpen ?
+                                closeIcon ? React.cloneElement(closeIcon) : null
+                                :
+                                openIcon ? React.cloneElement(openIcon) : null
+                            }
+                        </div>
+                    }
                 </div>
                 <div className={styles.dropdownList}>
                     <div ref={scrollContainerRef} className={styles.dropdownMenu}>
@@ -248,7 +252,8 @@ Dropdown.defaultProps = {
     openIcon: <span>↓</span>,
     closeIcon: <span>↑</span>,
     fullWidth: false,
-    noResultsText: 'No results'
+    noResultsText: 'No results',
+    showIcons: true
 };
 
 
