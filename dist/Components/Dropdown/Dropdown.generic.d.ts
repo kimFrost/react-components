@@ -6,7 +6,6 @@ export interface IOption<T> {
 export interface IProps<T = unknown> {
     id?: string;
     value?: IOption<T>;
-    disabled?: boolean;
     openIcon?: JSX.Element;
     closeIcon?: JSX.Element;
     options?: Array<IOption<T>>;

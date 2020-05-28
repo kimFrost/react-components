@@ -11,7 +11,6 @@ export interface IOption<T> {
 export interface IProps<T = unknown> {
     id?: string
     value?: IOption<T>
-    disabled?: boolean
     openIcon?: JSX.Element
     closeIcon?: JSX.Element
     options?: Array<IOption<T>>
@@ -43,7 +42,6 @@ Keys to bind
 function Dropdown<T>(props: IProps<T>) {
     const {
         value,
-        disabled,
         onChange,
         onInputChange,
         onFocus,
@@ -70,22 +68,18 @@ function Dropdown<T>(props: IProps<T>) {
     const defaultOption = options ? options.find((option) => option.value === value?.value) : null;
     const [selectedOption, setSelectedOption] = useState<IOption<T> | null | undefined>(defaultOption)
 
-    /*
     useEffect(() => {
         if (value) {
             if (selectedOption && selectedOption.value !== value.value) {
                 console.log(1, selectedOption.value, value.value)
-                setSelectedOption(value)
-                setFocusedOption(value)
+                selectOption(value)
             }
             else if (!selectedOption) {
                 console.log(2)
-                setSelectedOption(value)
-                setFocusedOption(value)
+                selectOption(value)
             }
         }
     }, [value, selectedOption])
-    */
 
     const filteredOptions = filterable ? options ? options.filter(option => {
         if (searchText.length) {
@@ -103,10 +97,6 @@ function Dropdown<T>(props: IProps<T>) {
         return refs
     }, {})
 
-    useEffect(() => {
-
-    }, [value]) 
-    
     useEffect(() => {
         if (hasFocus) {
             window.addEventListener('keydown', handleUserKeyPress);
@@ -175,8 +165,8 @@ function Dropdown<T>(props: IProps<T>) {
         setHasFocus(false);
         resetSearch()
         if (onBlur) {
-            if (value) {
-                e.target.value = value.label;
+            if (selectedOption) {
+                e.target.value = selectedOption.label;
             }
             onBlur(e)
         }
@@ -223,7 +213,6 @@ function Dropdown<T>(props: IProps<T>) {
                 <div className={styles.dropdownInput}>
                     <Field
                         invalid={invalid}
-                        disabled={disabled}
                         innerRef={controlRef}
                         onChange={handleControlChange}
                         onFocus={handleControlFocus}
@@ -233,7 +222,7 @@ function Dropdown<T>(props: IProps<T>) {
                         fullWidth={fullWidth}
                         value={searchText.length ? searchText : ''} />
                     <div className={styles.dropdownValueContainer}>{searchText.length === 0 &&
-                        value ? value.label : ''
+                        selectedOption ? selectedOption.label : ''
                     }</div>
                     {showIcons &&
                         <div className={styles.dropdownIcon}>
@@ -254,7 +243,7 @@ function Dropdown<T>(props: IProps<T>) {
                                     ref={optionRefs[option.label]}
                                     className={[
                                         styles.dropdownMenuItem,
-                                        (value === option ? styles.dropdownMenuItemSelected : ''),
+                                        (selectedOption === option ? styles.dropdownMenuItemSelected : ''),
                                         (focusedOption === option ? styles.dropdownMenuItemFocus : '')
                                     ].join(' ')}
                                     onClick={(e) => selectOption(option)}

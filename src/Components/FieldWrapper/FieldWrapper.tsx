@@ -1,5 +1,5 @@
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Field from './../Field';
 import { IProps as IFieldProps } from './../Field/Field';
 import styles from './FieldWrapper.scss'
@@ -36,6 +36,38 @@ const getPositionClass = (pos: string): string => {
     }
 }
 
+/*
+const FieldWrapperControl = React.forwardRef((props, ref) => (
+    React.cloneElement(props.control, {
+        ...props,
+        onChange: (e) => {
+            if (e.target) {
+                setHideLabel(e.target.value.length || document.activeElement == e.target);
+            }
+            else if (typeof e === 'string') {
+                setHideLabel(e.length > 0);
+            }
+            onChange ? onChange(e) : null;
+            if (typeof control.props['onChange'] === 'function') {
+                control.props['onChange'](e)
+            }
+        },
+        onFocus: () => {
+            setHideLabel(true)
+        },
+        onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+            if (props.value) {
+                setHideLabel(props.value.toString().length > 0)
+            }
+            else {
+                setHideLabel(e.target.value.length > 0)
+            }
+        },
+        ref: ref
+    })
+));
+*/
+
 const FieldWrapper: React.FC<IProps> = (props) => {
 
     const {
@@ -56,6 +88,33 @@ const FieldWrapper: React.FC<IProps> = (props) => {
 
     const [hideLabel, setHideLabel] = useState<boolean>((value || '').toString().length > 0)
 
+    const controlElement = control ? React.cloneElement(control, {
+        ...props,
+        onChange: (e) => {
+            if (e.target) {
+                setHideLabel(e.target.value.length || document.activeElement == e.target);
+            }
+            else if (typeof e === 'string') {
+                setHideLabel(e.length > 0);
+            }
+            onChange ? onChange(e) : null;
+            if (typeof control.props['onChange'] === 'function') {
+                control.props['onChange'](e)
+            }
+        },
+        onFocus: () => {
+            setHideLabel(true)
+        },
+        onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+            if (props.value) {
+                setHideLabel(props.value.toString().length > 0)
+            }
+            else {
+                setHideLabel(e.target.value.length > 0)
+            }
+        }
+    }) : null;
+
     useEffect(() => {
         if (typeof value === 'string') {
             setHideLabel(value.length > 0)
@@ -63,7 +122,23 @@ const FieldWrapper: React.FC<IProps> = (props) => {
         if (!value) {
             setHideLabel(false)
         }
+        else if (value && (value as any).label?.length > 0) {
+            setHideLabel(true)
+        }
     }, [value])
+
+    useEffect(() => {
+        if (controlElement) {
+            if (typeof controlElement.props.value === 'string') {
+                setHideLabel(controlElement.props.value.length > 0)
+            }
+            else {
+                if (controlElement.props.value) {
+                    setHideLabel(true);
+                }
+            }
+        }
+    }, [])
 
     return (
         <div className={
@@ -75,34 +150,7 @@ const FieldWrapper: React.FC<IProps> = (props) => {
                 ((invalid && errorText) ? styles.fieldWrapperShowError : '')
             ].join(' ')
         }>
-            {control &&
-                React.cloneElement(control, {
-                    ...props,
-                    onChange: (e) => {
-                        if (e.target) {
-                            setHideLabel(e.target.value.length || document.activeElement == e.target);
-                        }
-                        else if (typeof e === 'string') {
-                            setHideLabel(e.length > 0);
-                        }
-                        onChange ? onChange(e) : null;
-                        if (typeof control.props['onChange'] === 'function') {
-                            control.props['onChange'](e)
-                        }
-                    },
-                    onFocus: () => {
-                        setHideLabel(true)
-                    },
-                    onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
-                        if (props.value) {
-                            setHideLabel(props.value.toString().length > 0)
-                        }
-                        else {
-                            setHideLabel(e.target.value.length > 0)
-                        }
-                    }
-                })
-            }
+            {controlElement}
             {label &&
                 <label className={styles.fieldWrapperLabel} htmlFor={id}>
                     {label}
@@ -136,3 +184,28 @@ FieldWrapper.defaultProps = {
 }
 
 export default FieldWrapper
+
+
+
+interface IPropss {
+    control?: JSX.Element
+}
+const Wrapper: React.FC<IPropss> = (props) => {
+    const {
+        control
+    } = props;
+    const ref = React.useRef()
+    return (
+        <React.Fragment>
+            {control &&
+                React.cloneElement(
+                    control,
+                    {
+                        ...props,
+                        ref: ref
+                    }
+                )
+            }
+        </React.Fragment>
+    )
+}
