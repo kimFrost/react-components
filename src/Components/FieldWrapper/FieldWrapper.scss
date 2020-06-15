@@ -95,10 +95,12 @@
         font-family: var(--field-font-family, #{$field-font-family});
         color: var(--field-text-color, #{$field-text-color});
         font-size: var(--field-font-size, #{$field-font-size});
-        line-height: 1em;
+        //line-height: 1em;
+        line-height: var(--field-height, #{$field-height});
         margin: 0;
         transform-origin: 0 0;
-        transform: translate(0, 50%) scale(1);
+        //transform: translate(0, 50%) scale(1);
+        transform: translate(0, 0) scale(1);
         //transform:  translate(0, calc(var(--field-height) / 2 - 0.5em)) scale(1);
         transition: all linear 100ms;
         pointer-events: none;
@@ -117,7 +119,7 @@
 .field-wrapper--hide-label {
     &.field-wrapper--label-inside {
         .field-wrapper__label {
-            transform: translate(0, 0) scale(0.5);
+            transform: translate(0, -2px) scale(0.5);
         }
     }
 }

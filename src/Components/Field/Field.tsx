@@ -52,7 +52,6 @@ const Field: React.FC<IProps> = (props) => {
                         styles.field,
                         (focus ? styles.fieldFocus : ''),
                         (invalid ? styles.fieldInvalid : ''),
-                        (invalid ? styles.fieldInvalid : ''),
                         (multiLine ? styles.fieldMultiLine : ''),
                         (Array.isArray(inputValue) ? styles.fieldHasSubfields : ''),
                         (locked ? styles.fieldLocked : '')

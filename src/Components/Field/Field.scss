@@ -15,12 +15,13 @@
     margin: 0 !important;
     padding-left: var(--field-padding, #{$field-padding}) !important;
     padding-right: var(--field-padding, #{$field-padding}) !important;
-    border: 1px solid grey !important;
+    border: var(--field-border-width, #{$field-border-width}) solid var(--field-border-color, #{$field-border-color}) !important;
     color: var(--field-text-color, #{$field-text-color}) !important;
     font-size: var(--field-font-size, #{$field-font-size}) !important;
     font-weight: var(--field-font-weight, #{$field-font-weight}) !important;
     font-family: var(--field-font-family, #{$field-font-family}) !important;
     transition: border-color 300ms ease !important;
+    box-shadow: var(--field-box-shadow, #{$field-box-shadow}) !important;
 }
 
 .field:focus,
@@ -28,7 +29,8 @@
     border-color: var(--field-focus-color, #{$field-focus-color}) !important;
 }
 
-.field:disabled {
+.field:disabled,
+.field:read-only {
     background-color: lightgrey !important;
     border-color: lightgrey !important;
 }
