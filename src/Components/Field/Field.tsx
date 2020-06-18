@@ -4,7 +4,7 @@ import styles from './Field.scss'
 
 
 export interface IProps {
-    //inputRef?: React.RefObject<HTMLInputElement>
+    inputRef?: React.RefObject<HTMLInputElement>
     type?: string
     id?: string
     name?: string
@@ -25,11 +25,11 @@ export interface IProps {
 }
 
 
-const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
-    //const Field: React.FC<IProps> = (props) => {
+//const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
+const Field: React.FC<IProps> = (props) => {
 
     const {
-        value, type, id, name, placeholder, multiLine, disabled, focus, invalid, required, fullWidth,
+        value, type, inputRef, id, name, placeholder, multiLine, disabled, focus, invalid, required, fullWidth,
         onChange, onFocus, onBlur, onClick, locked, readonly } = props;
 
     const [inputValue, setInputValue] = useState(value)
@@ -61,7 +61,7 @@ const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
                     ].join(' ')}
                     id={id}
                     name={name}
-                    ref={ref as any}
+                    ref={inputRef as any}
                     value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
@@ -94,7 +94,7 @@ const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
                     ].join(' ')}
                     id={id}
                     name={name}
-                    ref={ref}
+                    ref={inputRef}
                     type={type}
                     value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
                     placeholder={placeholder}
@@ -114,7 +114,8 @@ const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
             </React.Fragment>
         )
     }
-})
+}
+//})
 
 Field.defaultProps = {
     type: 'text',
