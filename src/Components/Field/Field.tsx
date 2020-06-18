@@ -1,12 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import styles from './Field.scss'
 
 
 export interface IProps {
-    innerRef?: React.RefObject<HTMLInputElement>
+    //innerRef?: React.RefObject<HTMLInputElement>
     type?: string
     id?: string
+    name?: string
     value?: string | Array<string>
     placeholder?: string
     multiLine?: boolean
@@ -23,10 +24,12 @@ export interface IProps {
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
 }
 
-const Field: React.FC<IProps> = (props) => {
+
+const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
+    //const Field: React.FC<IProps> = (props) => {
 
     const {
-        value, type, innerRef, id, placeholder, multiLine, disabled, focus, invalid, required, fullWidth,
+        value, type, id, name, placeholder, multiLine, disabled, focus, invalid, required, fullWidth,
         onChange, onFocus, onBlur, onClick, locked, readonly } = props;
 
     const [inputValue, setInputValue] = useState(value)
@@ -44,6 +47,33 @@ const Field: React.FC<IProps> = (props) => {
         }
     }
 
+    console.log('props', props)
+
+    // return (
+    //     <input
+    //         className={[
+    //             styles.field,
+    //             (focus ? styles.fieldFocus : ''),
+    //             (invalid ? styles.fieldInvalid : ''),
+    //             (fullWidth ? styles.fieldFullWidth : ''),
+    //             (Array.isArray(inputValue) ? styles.fieldHasSubfields : ''),
+    //             (locked ? styles.fieldLocked : '')
+    //         ].join(' ')}
+    //         id={id}
+    //         name={name}
+    //         ref={ref}
+    //         type={type}
+    //         placeholder={placeholder}
+    //         disabled={disabled}
+    //         required={required}
+    //         readOnly={readonly}
+    //         onChange={handleOnChange}
+    //         onFocus={onFocus}
+    //         onBlur={onBlur}
+    //         onClick={onClick}
+    //     />
+    // )
+
     if (multiLine) {
         return (
             <React.Fragment>
@@ -57,7 +87,8 @@ const Field: React.FC<IProps> = (props) => {
                         (locked ? styles.fieldLocked : '')
                     ].join(' ')}
                     id={id}
-                    ref={innerRef as any}
+                    name={name}
+                    ref={ref as any}
                     value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
                     placeholder={placeholder}
                     disabled={disabled}
@@ -89,7 +120,8 @@ const Field: React.FC<IProps> = (props) => {
                         (locked ? styles.fieldLocked : '')
                     ].join(' ')}
                     id={id}
-                    ref={innerRef}
+                    name={name}
+                    ref={ref}
                     type={type}
                     value={Array.isArray(inputValue) ? inputValue.reduce((value, combined) => value + combined, '') : inputValue}
                     placeholder={placeholder}
@@ -109,7 +141,7 @@ const Field: React.FC<IProps> = (props) => {
             </React.Fragment>
         )
     }
-}
+})
 
 Field.defaultProps = {
     type: 'text',

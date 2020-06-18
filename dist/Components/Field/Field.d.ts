@@ -1,8 +1,8 @@
 import React from 'react';
 export interface IProps {
-    innerRef?: React.RefObject<HTMLInputElement>;
     type?: string;
     id?: string;
+    name?: string;
     value?: string | Array<string>;
     placeholder?: string;
     multiLine?: boolean;
@@ -18,5 +18,5 @@ export interface IProps {
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
     onClick?: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
-declare const Field: React.FC<IProps>;
+declare const Field: React.ForwardRefExoticComponent<IProps & React.RefAttributes<HTMLInputElement>>;
 export default Field;

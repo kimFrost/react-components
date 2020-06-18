@@ -224,7 +224,7 @@ function Dropdown<T>(props: IProps<T>) {
                     <Field
                         invalid={invalid}
                         disabled={disabled}
-                        innerRef={controlRef}
+                        ref={controlRef}
                         onChange={handleControlChange}
                         onFocus={handleControlFocus}
                         onBlur={handleControlBlur}

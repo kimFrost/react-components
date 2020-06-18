@@ -213,7 +213,7 @@ function Dropdown<T>(props: IProps<T>) {
                 <div className={styles.dropdownInput}>
                     <Field
                         invalid={invalid}
-                        innerRef={controlRef}
+                        ref={controlRef}
                         onChange={handleControlChange}
                         onFocus={handleControlFocus}
                         onBlur={handleControlBlur}
