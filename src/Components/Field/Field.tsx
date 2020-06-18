@@ -4,7 +4,7 @@ import styles from './Field.scss'
 
 
 export interface IProps {
-    //innerRef?: React.RefObject<HTMLInputElement>
+    //inputRef?: React.RefObject<HTMLInputElement>
     type?: string
     id?: string
     name?: string
@@ -46,33 +46,6 @@ const Field = forwardRef<HTMLInputElement, IProps>((props, ref) => {
                 onChange(e)
         }
     }
-
-    console.log('props', props)
-
-    // return (
-    //     <input
-    //         className={[
-    //             styles.field,
-    //             (focus ? styles.fieldFocus : ''),
-    //             (invalid ? styles.fieldInvalid : ''),
-    //             (fullWidth ? styles.fieldFullWidth : ''),
-    //             (Array.isArray(inputValue) ? styles.fieldHasSubfields : ''),
-    //             (locked ? styles.fieldLocked : '')
-    //         ].join(' ')}
-    //         id={id}
-    //         name={name}
-    //         ref={ref}
-    //         type={type}
-    //         placeholder={placeholder}
-    //         disabled={disabled}
-    //         required={required}
-    //         readOnly={readonly}
-    //         onChange={handleOnChange}
-    //         onFocus={onFocus}
-    //         onBlur={onBlur}
-    //         onClick={onClick}
-    //     />
-    // )
 
     if (multiLine) {
         return (

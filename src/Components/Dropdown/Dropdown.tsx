@@ -105,8 +105,8 @@ function Dropdown<T>(props: IProps<T>) {
 
     useEffect(() => {
 
-    }, [value]) 
-    
+    }, [value])
+
     useEffect(() => {
         if (hasFocus) {
             window.addEventListener('keydown', handleUserKeyPress);
@@ -233,7 +233,7 @@ function Dropdown<T>(props: IProps<T>) {
                         fullWidth={fullWidth}
                         value={searchText.length ? searchText : ''} />
                     <div className={styles.dropdownValueContainer}>{searchText.length === 0 &&
-                        value ? value.label : ''
+                        (value && value.label) ? value.label : (typeof value === 'string' ? value : '')
                     }</div>
                     {showIcons &&
                         <div className={styles.dropdownIcon}>
